@@ -29,6 +29,15 @@
 		52A00D342A5C98A0003F9030 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D332A5C98A0003F9030 /* Constants.swift */; };
 		52A00D352A5C98A0003F9030 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D332A5C98A0003F9030 /* Constants.swift */; };
 		52A00D362A5C98A0003F9030 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D332A5C98A0003F9030 /* Constants.swift */; };
+		52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D372A5D60A7003F9030 /* AttendanceCard.swift */; };
+		52A00D392A5D60A7003F9030 /* AttendanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D372A5D60A7003F9030 /* AttendanceCard.swift */; };
+		52A00D3A2A5D60A7003F9030 /* AttendanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D372A5D60A7003F9030 /* AttendanceCard.swift */; };
+		52A00D3C2A5D65DA003F9030 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */; };
+		52A00D3D2A5D65DA003F9030 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */; };
+		52A00D3E2A5D65DA003F9030 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */; };
+		52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */; };
+		52A00D412A5D6974003F9030 /* AddSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */; };
+		52A00D422A5D6974003F9030 /* AddSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +75,9 @@
 		52A00D222A5C97FC003F9030 /* LufgaSemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LufgaSemiBold.ttf; sourceTree = "<group>"; };
 		52A00D2F2A5C9835003F9030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52A00D332A5C98A0003F9030 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		52A00D372A5D60A7003F9030 /* AttendanceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCard.swift; sourceTree = "<group>"; };
+		52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				52A00CF52A5C9624003F9030 /* ContentView.swift */,
+				52A00D372A5D60A7003F9030 /* AttendanceCard.swift */,
+				52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */,
+				52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */,
 			);
 			name = View;
 			path = Model;
@@ -331,7 +346,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
+				52A00D3C2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
 				52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */,
+				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */,
 				52A00D342A5C98A0003F9030 /* Constants.swift in Sources */,
 			);
@@ -341,8 +359,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A00D3D2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
 				52A00D062A5C9626003F9030 /* bunk_mateTests.swift in Sources */,
+				52A00D412A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52A00D352A5C98A0003F9030 /* Constants.swift in Sources */,
+				52A00D392A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +371,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A00D3A2A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
+				52A00D3E2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
 				52A00D102A5C9626003F9030 /* bunk_mateUITests.swift in Sources */,
+				52A00D422A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52A00D122A5C9626003F9030 /* bunk_mateUITestsLaunchTests.swift in Sources */,
 				52A00D362A5C98A0003F9030 /* Constants.swift in Sources */,
 			);
