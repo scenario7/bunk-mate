@@ -6,20 +6,25 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AddSubjectView: View {
     
     let constants = Constants()
     
+    @Environment(\.managedObjectContext) var moc
+    
     @State var subjectName = ""
-    @State var attended = 1
-    @State var missed = 0
-    @State var requirement = 75
+    @State var attended : Double = 1.0
+    @State var missed : Double = 0.0
+    @State var requirement : Double = 75.0
+    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack(alignment:.top){
             Color.black.ignoresSafeArea()
-            VStack{
+            VStack(spacing:30){
                 Text("Subject Name")
                     .font(.system(size: 17, weight: .medium))
                     .foregroundColor(.white.opacity(0.8))
@@ -32,7 +37,7 @@ struct AddSubjectView: View {
                         .foregroundColor(.white)
                         .frame(width:300,height: 1)
                 }
-                HStack(spacing:30){
+                HStack(/*spacing:30*/){
                     VStack{
                         Button {
                             attended+=1
@@ -48,7 +53,7 @@ struct AddSubjectView: View {
                             }
                             .frame(height: 50)
                         }
-                        Text("\(attended)")
+                        Text("\(Int(attended))")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
                         Text("Attended")
@@ -70,6 +75,7 @@ struct AddSubjectView: View {
                         }
                         .disabled((attended==0) || (missed==0 && attended==1))
                     }
+                    Spacer()
                     VStack{
                         Button {
                             missed+=1
@@ -85,7 +91,7 @@ struct AddSubjectView: View {
                             }
                             .frame(height: 50)
                         }
-                        Text("\(missed)")
+                        Text("\(Int(missed))")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
                         Text("Missed")
@@ -107,6 +113,7 @@ struct AddSubjectView: View {
                         }
                         .disabled((attended==0 && missed==1) || (missed==0))
                     }
+                    Spacer()
                     VStack{
                         Button {
                             requirement += 5
@@ -123,7 +130,7 @@ struct AddSubjectView: View {
                             .frame(height: 50)
                         }
                         .disabled(requirement>91)
-                        Text("\(((requirement)))%")
+                        Text("\(Int((requirement)))%")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
                         Text("Requirement")
@@ -146,6 +153,27 @@ struct AddSubjectView: View {
                         .disabled(requirement < 9)
                     }
                 }
+                .padding()
+                Button {
+                    let newSubject = Subject(context: moc)
+                    newSubject.name = subjectName
+                    newSubject.attended = attended
+                    newSubject.missed = missed
+                    newSubject.requirement = requirement*0.01
+                    
+                    try? moc.save()
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(constants.primaryColor)
+                        Text("Add")
+                            .foregroundColor(subjectName.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? .gray : constants.accent)
+                            .font(.system(size: 17, weight: .medium))
+                    }
+                    .frame(width: 120, height: 50)
+                }
+                .disabled(subjectName.trimmingCharacters(in: .whitespacesAndNewlines) == "")
             }
             .padding()
         }

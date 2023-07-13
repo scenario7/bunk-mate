@@ -38,6 +38,15 @@
 		52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */; };
 		52A00D412A5D6974003F9030 /* AddSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */; };
 		52A00D422A5D6974003F9030 /* AddSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */; };
+		52A00D452A5EC853003F9030 /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */; };
+		52A00D462A5EC853003F9030 /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */; };
+		52A00D472A5EC853003F9030 /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */; };
+		52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D482A5F2AA6003F9030 /* DataController.swift */; };
+		52A00D4A2A5F2AA6003F9030 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D482A5F2AA6003F9030 /* DataController.swift */; };
+		52A00D4B2A5F2AA6003F9030 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D482A5F2AA6003F9030 /* DataController.swift */; };
+		52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */; };
+		52A00D4E2A5F2BE6003F9030 /* AllTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */; };
+		52A00D4F2A5F2BE6003F9030 /* AllTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +87,9 @@
 		52A00D372A5D60A7003F9030 /* AttendanceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCard.swift; sourceTree = "<group>"; };
 		52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubjectView.swift; sourceTree = "<group>"; };
+		52A00D442A5EC853003F9030 /* Stash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stash.xcdatamodel; sourceTree = "<group>"; };
+		52A00D482A5F2AA6003F9030 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTabsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +152,7 @@
 				52A00CF32A5C9624003F9030 /* bunk_mateApp.swift */,
 				52A00CF72A5C9626003F9030 /* Assets.xcassets */,
 				52A00CF92A5C9626003F9030 /* bunk_mate.entitlements */,
+				52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */,
 				52A00CFA2A5C9626003F9030 /* Preview Content */,
 			);
 			path = "bunk-mate";
@@ -192,6 +205,7 @@
 				52A00D372A5D60A7003F9030 /* AttendanceCard.swift */,
 				52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */,
 				52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */,
+				52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */,
 			);
 			name = View;
 			path = Model;
@@ -200,6 +214,7 @@
 		52A00D322A5C9884003F9030 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				52A00D482A5F2AA6003F9030 /* DataController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -347,9 +362,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
+				52A00D452A5EC853003F9030 /* Stash.xcdatamodeld in Sources */,
 				52A00D3C2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
+				52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
 				52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */,
 				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
+				52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */,
 				52A00D342A5C98A0003F9030 /* Constants.swift in Sources */,
 			);
@@ -359,9 +377,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A00D4A2A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A00D3D2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
+				52A00D4E2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
 				52A00D062A5C9626003F9030 /* bunk_mateTests.swift in Sources */,
 				52A00D412A5D6974003F9030 /* AddSubjectView.swift in Sources */,
+				52A00D462A5EC853003F9030 /* Stash.xcdatamodeld in Sources */,
 				52A00D352A5C98A0003F9030 /* Constants.swift in Sources */,
 				52A00D392A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
 			);
@@ -372,9 +393,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				52A00D3A2A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
+				52A00D472A5EC853003F9030 /* Stash.xcdatamodeld in Sources */,
 				52A00D3E2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
+				52A00D4F2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
 				52A00D102A5C9626003F9030 /* bunk_mateUITests.swift in Sources */,
 				52A00D422A5D6974003F9030 /* AddSubjectView.swift in Sources */,
+				52A00D4B2A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A00D122A5C9626003F9030 /* bunk_mateUITestsLaunchTests.swift in Sources */,
 				52A00D362A5C98A0003F9030 /* Constants.swift in Sources */,
 			);
@@ -713,6 +737,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				52A00D442A5EC853003F9030 /* Stash.xcdatamodel */,
+			);
+			currentVersion = 52A00D442A5EC853003F9030 /* Stash.xcdatamodel */;
+			path = Stash.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 52A00CE82A5C9624003F9030 /* Project object */;
 }

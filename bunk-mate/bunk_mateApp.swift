@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct bunk_mateApp: App {
+    
+    @StateObject private var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeScreen()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
