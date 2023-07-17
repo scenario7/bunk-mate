@@ -12,7 +12,9 @@ struct AddSubjectView: View {
     
     let constants = Constants()
     
-    @Environment(\.managedObjectContext) var moc
+    //@Environment(\.managedObjectContext) var moc
+    @StateObject private var dataController = DataController.shared
+    
     
     @State var subjectName = ""
     @State var attended : Double = 1.0
@@ -155,13 +157,13 @@ struct AddSubjectView: View {
                 }
                 .padding()
                 Button {
-                    let newSubject = Subject(context: moc)
+                    let newSubject = Subject(context: dataController.container.viewContext)
                     newSubject.name = subjectName
                     newSubject.attended = attended
                     newSubject.missed = missed
                     newSubject.requirement = requirement*0.01
                     
-                    try? moc.save()
+                    dataController.saveData()
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     ZStack{

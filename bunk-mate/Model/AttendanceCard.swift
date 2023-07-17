@@ -51,8 +51,9 @@ struct AttendanceCard: View {
                         Circle()
                             .trim(from: 0, to: getPercentage(attended: attended, missed: missed))
                             .stroke(lineWidth: 6)
-                            .foregroundColor(.green)
-                            .shadow(color: .green, radius: 5)
+                            .foregroundColor(returnColor(percentage: getPercentage(attended: attended, missed: missed), requirement: requirement))
+                            .animation(.easeInOut)
+                            .shadow(color: returnColor(percentage: getPercentage(attended: attended, missed: missed), requirement: requirement), radius: 5)
                             .rotationEffect(Angle(degrees: 270))
 
                         Text("\(Int((getPercentage(attended:attended,    missed: missed)*100)))%")
@@ -73,13 +74,23 @@ struct AttendanceCard: View {
     }
     func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
         if (getPercentage(attended: attended, missed: missed)) > requirement {
-            var skippable = Int((attended-requirement*(attended+missed))/requirement)
+            let skippable = Int((attended-requirement*(attended+missed))/requirement)
             return "Can Skip \(skippable) Classes"
         } else if (getPercentage(attended: attended, missed: missed)) < requirement {
-            var needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
+            let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
             return "Must attend \(needToAttend) Classes"
         } else {
             return "Cannot Skip Classes"
+        }
+    }
+    
+    func returnColor(percentage : Double, requirement : Double) -> Color{
+        if (percentage > requirement){
+            return .green
+        } else if (percentage > requirement*0.6){
+            return .yellow
+        } else {
+            return .red
         }
     }
 }

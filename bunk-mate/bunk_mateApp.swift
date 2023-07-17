@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct bunk_mateApp: App {
     
-    @StateObject private var dataController = DataController()
+    @StateObject private var dataController = DataController.shared
     
     var body: some Scene {
         WindowGroup {

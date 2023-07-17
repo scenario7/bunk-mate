@@ -4,10 +4,38 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AttendanceWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>bunk-mate.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>52A00CEF2A5C9624003F9030</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>52A00D002A5C9626003F9030</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>52A00D0A2A5C9626003F9030</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>52A00D532A62DE90003F9030</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

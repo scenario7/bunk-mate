@@ -47,6 +47,17 @@
 		52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */; };
 		52A00D4E2A5F2BE6003F9030 /* AllTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */; };
 		52A00D4F2A5F2BE6003F9030 /* AllTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */; };
+		52A00D572A62DE91003F9030 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D562A62DE91003F9030 /* WidgetKit.framework */; };
+		52A00D592A62DE91003F9030 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D582A62DE91003F9030 /* SwiftUI.framework */; };
+		52A00D5C2A62DE91003F9030 /* AttendanceWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D5B2A62DE91003F9030 /* AttendanceWidgetBundle.swift */; };
+		52A00D5E2A62DE91003F9030 /* AttendanceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D5D2A62DE91003F9030 /* AttendanceWidget.swift */; };
+		52A00D612A62DE93003F9030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A00D602A62DE93003F9030 /* Assets.xcassets */; };
+		52A00D632A62DE93003F9030 /* AttendanceWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D5F2A62DE91003F9030 /* AttendanceWidget.intentdefinition */; };
+		52A00D642A62DE93003F9030 /* AttendanceWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D5F2A62DE91003F9030 /* AttendanceWidget.intentdefinition */; };
+		52A00D672A62DE94003F9030 /* AttendanceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 52A00D542A62DE91003F9030 /* AttendanceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52A0E9BA2A64031400303DA5 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D482A5F2AA6003F9030 /* DataController.swift */; };
+		52A0E9BB2A64031D00303DA5 /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */; };
+		52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +75,28 @@
 			remoteGlobalIDString = 52A00CEF2A5C9624003F9030;
 			remoteInfo = "bunk-mate";
 		};
+		52A00D652A62DE93003F9030 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52A00CE82A5C9624003F9030 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52A00D532A62DE90003F9030;
+			remoteInfo = AttendanceWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		52A00D6B2A62DE94003F9030 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				52A00D672A62DE94003F9030 /* AttendanceWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		52A00CF02A5C9624003F9030 /* bunk-mate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bunk-mate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +122,16 @@
 		52A00D442A5EC853003F9030 /* Stash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stash.xcdatamodel; sourceTree = "<group>"; };
 		52A00D482A5F2AA6003F9030 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTabsView.swift; sourceTree = "<group>"; };
+		52A00D542A62DE91003F9030 /* AttendanceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AttendanceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		52A00D562A62DE91003F9030 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		52A00D582A62DE91003F9030 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		52A00D5B2A62DE91003F9030 /* AttendanceWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceWidgetBundle.swift; sourceTree = "<group>"; };
+		52A00D5D2A62DE91003F9030 /* AttendanceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceWidget.swift; sourceTree = "<group>"; };
+		52A00D5F2A62DE91003F9030 /* AttendanceWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = AttendanceWidget.intentdefinition; sourceTree = "<group>"; };
+		52A00D602A62DE93003F9030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52A00D622A62DE93003F9030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52A0E9BC2A6484C900303DA5 /* AttendanceWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AttendanceWidgetExtension.entitlements; sourceTree = "<group>"; };
+		52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,15 +156,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52A00D512A62DE90003F9030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52A00D592A62DE91003F9030 /* SwiftUI.framework in Frameworks */,
+				52A00D572A62DE91003F9030 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		52A00CE72A5C9624003F9030 = {
 			isa = PBXGroup;
 			children = (
+				52A0E9BC2A6484C900303DA5 /* AttendanceWidgetExtension.entitlements */,
 				52A00CF22A5C9624003F9030 /* bunk-mate */,
 				52A00D042A5C9626003F9030 /* bunk-mateTests */,
 				52A00D0E2A5C9626003F9030 /* bunk-mateUITests */,
+				52A00D5A2A62DE91003F9030 /* AttendanceWidget */,
+				52A00D552A62DE91003F9030 /* Frameworks */,
 				52A00CF12A5C9624003F9030 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -133,6 +187,7 @@
 				52A00CF02A5C9624003F9030 /* bunk-mate.app */,
 				52A00D012A5C9626003F9030 /* bunk-mateTests.xctest */,
 				52A00D0B2A5C9626003F9030 /* bunk-mateUITests.xctest */,
+				52A00D542A62DE91003F9030 /* AttendanceWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,6 +261,7 @@
 				52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */,
 				52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */,
 				52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */,
+				52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */,
 			);
 			name = View;
 			path = Model;
@@ -219,6 +275,27 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		52A00D552A62DE91003F9030 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52A00D562A62DE91003F9030 /* WidgetKit.framework */,
+				52A00D582A62DE91003F9030 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52A00D5A2A62DE91003F9030 /* AttendanceWidget */ = {
+			isa = PBXGroup;
+			children = (
+				52A00D5B2A62DE91003F9030 /* AttendanceWidgetBundle.swift */,
+				52A00D5D2A62DE91003F9030 /* AttendanceWidget.swift */,
+				52A00D5F2A62DE91003F9030 /* AttendanceWidget.intentdefinition */,
+				52A00D602A62DE93003F9030 /* Assets.xcassets */,
+				52A00D622A62DE93003F9030 /* Info.plist */,
+			);
+			path = AttendanceWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -229,10 +306,12 @@
 				52A00CEC2A5C9624003F9030 /* Sources */,
 				52A00CED2A5C9624003F9030 /* Frameworks */,
 				52A00CEE2A5C9624003F9030 /* Resources */,
+				52A00D6B2A62DE94003F9030 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				52A00D662A62DE93003F9030 /* PBXTargetDependency */,
 			);
 			name = "bunk-mate";
 			productName = "bunk-mate";
@@ -275,6 +354,23 @@
 			productReference = 52A00D0B2A5C9626003F9030 /* bunk-mateUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		52A00D532A62DE90003F9030 /* AttendanceWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52A00D682A62DE94003F9030 /* Build configuration list for PBXNativeTarget "AttendanceWidgetExtension" */;
+			buildPhases = (
+				52A00D502A62DE90003F9030 /* Sources */,
+				52A00D512A62DE90003F9030 /* Frameworks */,
+				52A00D522A62DE90003F9030 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AttendanceWidgetExtension;
+			productName = AttendanceWidgetExtension;
+			productReference = 52A00D542A62DE91003F9030 /* AttendanceWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -296,6 +392,9 @@
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = 52A00CEF2A5C9624003F9030;
 					};
+					52A00D532A62DE90003F9030 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 52A00CEB2A5C9624003F9030 /* Build configuration list for PBXProject "bunk-mate" */;
@@ -314,6 +413,7 @@
 				52A00CEF2A5C9624003F9030 /* bunk-mate */,
 				52A00D002A5C9626003F9030 /* bunk-mateTests */,
 				52A00D0A2A5C9626003F9030 /* bunk-mateUITests */,
+				52A00D532A62DE90003F9030 /* AttendanceWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -354,6 +454,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52A00D522A62DE90003F9030 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52A00D612A62DE93003F9030 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -362,12 +470,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
+				52A00D642A62DE93003F9030 /* AttendanceWidget.intentdefinition in Sources */,
 				52A00D452A5EC853003F9030 /* Stash.xcdatamodeld in Sources */,
 				52A00D3C2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
 				52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
 				52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */,
 				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */,
+				52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */,
 				52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */,
 				52A00D342A5C98A0003F9030 /* Constants.swift in Sources */,
 			);
@@ -404,6 +514,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52A00D502A62DE90003F9030 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52A00D5E2A62DE91003F9030 /* AttendanceWidget.swift in Sources */,
+				52A0E9BA2A64031400303DA5 /* DataController.swift in Sources */,
+				52A00D5C2A62DE91003F9030 /* AttendanceWidgetBundle.swift in Sources */,
+				52A00D632A62DE93003F9030 /* AttendanceWidget.intentdefinition in Sources */,
+				52A0E9BB2A64031D00303DA5 /* Stash.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -416,6 +538,11 @@
 			isa = PBXTargetDependency;
 			target = 52A00CEF2A5C9624003F9030 /* bunk-mate */;
 			targetProxy = 52A00D0C2A5C9626003F9030 /* PBXContainerItemProxy */;
+		};
+		52A00D662A62DE93003F9030 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52A00D532A62DE90003F9030 /* AttendanceWidgetExtension */;
+			targetProxy = 52A00D652A62DE93003F9030 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -532,6 +659,7 @@
 		52A00D162A5C9626003F9030 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
@@ -553,7 +681,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -571,6 +699,7 @@
 		52A00D172A5C9626003F9030 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
@@ -592,7 +721,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -697,6 +826,67 @@
 			};
 			name = Release;
 		};
+		52A00D692A62DE94003F9030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AttendanceWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R5SRU82TD9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AttendanceWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AttendanceWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinthomas.bunk-mate.AttendanceWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52A00D6A2A62DE94003F9030 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AttendanceWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R5SRU82TD9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AttendanceWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AttendanceWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinthomas.bunk-mate.AttendanceWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -732,6 +922,15 @@
 			buildConfigurations = (
 				52A00D1C2A5C9626003F9030 /* Debug */,
 				52A00D1D2A5C9626003F9030 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52A00D682A62DE94003F9030 /* Build configuration list for PBXNativeTarget "AttendanceWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52A00D692A62DE94003F9030 /* Debug */,
+				52A00D6A2A62DE94003F9030 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

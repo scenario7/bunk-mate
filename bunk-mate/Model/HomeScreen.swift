@@ -12,11 +12,25 @@ struct HomeScreen: View {
     
     let constants = Constants()
     
-    @Environment(\.managedObjectContext) var moc
+    //@Environment(\.managedObjectContext) var moc
+    @StateObject private var dataController = DataController.shared
     
-    @FetchRequest(entity: Subject.entity(), sortDescriptors: []) var subjects : FetchedResults<Subject>
+    @FetchRequest(entity: Subject.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Subject.name, ascending: true)]) var subjects : FetchedResults<Subject>
     
     @State var addSubjectIsShown = false
+    @State private var deleteSubject: Subject?
+    @State private var showAlert = false
+    @State private var showPurchase = false
+    
+    var actionDate: String {
+        let userDefaults = UserDefaults.standard
+        if let storedDate = userDefaults.object(forKey: "lua") as? Date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "d MMMM 'at' HH:mm"
+            return dateFormatter.string(from: storedDate)
+        }
+        return "unknown"
+    }
     
     var body: some View {
         ZStack(alignment:.topLeading){
@@ -30,12 +44,29 @@ struct HomeScreen: View {
                         Text("Your Attendance")
                             .foregroundColor(.white)
                             .font(.system(size: 27, weight: .semibold))
-                        Text("Last Updated at 14:20 on 3/7")
+                        Text("Last Updated on \(actionDate)")
                             .foregroundColor(.gray)
                             .font(.system(size: 15, weight: .medium))
                         
                     }
                     Spacer()
+                    Button {
+                        showPurchase.toggle()
+                    } label: {
+                        ZStack{
+                            Circle()
+                                .foregroundColor(constants.primaryColor)
+                            Image(systemName: "bag")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(constants.accent)
+                                .padding(14)
+                        }
+                        .frame(height: 50)
+                    }
+                    .sheet(isPresented: $showPurchase) {
+                        PurchaseScreen()
+                    }
                     Button {
                         addSubjectIsShown.toggle()
                     } label: {
@@ -70,34 +101,35 @@ struct HomeScreen: View {
                                     HStack{
                                         Button {
                                             subject.attended-=1
-                                            try? moc.save()
+                                            dataController.saveData()
                                         } label: {
                                             Image(systemName: "minus.circle")
-                                                .foregroundColor(constants.accent)
+                                                .foregroundColor((subject.attended==0) || (subject.missed==0 && subject.attended==1) ? .gray : constants.accent)
                                                 .padding(4)
                                                 .background {
                                                     constants.primaryColor
                                                 }
                                                 .cornerRadius(8)
                                         }
+                                        .disabled((subject.attended==0) || (subject.missed==0 && subject.attended==1))
                                         Button {
                                             subject.attended+=1
-                                            try? moc.save()                                    } label: {
-                                            Image(systemName: "plus.circle")
-                                                .foregroundColor(constants.accent)
-                                                .padding(4)
-                                                .background {
-                                                    constants.primaryColor
-                                                }
-                                                .cornerRadius(8)
-                                        }
-
+                                            dataController.saveData()                                    } label: {
+                                                Image(systemName: "plus.circle")
+                                                    .foregroundColor(constants.accent)
+                                                    .padding(4)
+                                                    .background {
+                                                        constants.primaryColor
+                                                    }
+                                                    .cornerRadius(8)
+                                            }
+                                        
                                     }
                                 }
                                 Spacer()
                                 Button {
-                                    moc.delete(subject)
-                                    try? moc.save()
+                                    deleteSubject = subject
+                                    showAlert = true
                                 } label: {
                                     Text("Delete")
                                         .font(.system(size: 17, weight: .semibold))
@@ -109,7 +141,7 @@ struct HomeScreen: View {
                                         .cornerRadius(8)
                                 }
                                 Spacer()
-
+                                
                                 VStack {
                                     Text("Missed")
                                         .font(.system(size: 13))
@@ -117,42 +149,63 @@ struct HomeScreen: View {
                                     HStack{
                                         Button {
                                             subject.missed-=1
-                                            try? moc.save()                                    } label: {
-                                            Image(systemName: "minus.circle")
-                                                .foregroundColor(constants.accent)
-                                                .padding(4)
-                                                .background {
-                                                    constants.primaryColor
-                                                }
-                                                .cornerRadius(8)
-                                        }
+                                            dataController.saveData()                                    } label: {
+                                                Image(systemName: "minus.circle")
+                                                    .foregroundColor((subject.attended==0 && subject.missed==1) || (subject.missed==0) ? .gray : constants.accent)
+                                                    .padding(4)
+                                                    .background {
+                                                        constants.primaryColor
+                                                    }
+                                                    .cornerRadius(8)
+                                            }
+                                            .disabled((subject.attended==0 && subject.missed==1) || (subject.missed==0))
+                                        
                                         Button {
                                             subject.missed+=1
-                                            try? moc.save()                                    } label: {
-                                            Image(systemName: "plus.circle")
-                                                .foregroundColor(constants.accent)
-                                                .padding(4)
-                                                .background {
-                                                    constants.primaryColor
-                                                }
-                                                .cornerRadius(8)
-                                        }
-
+                                            dataController.saveData()                                    } label: {
+                                                Image(systemName: "plus.circle")
+                                                    .foregroundColor(constants.accent)
+                                                    .padding(4)
+                                                    .background {
+                                                        constants.primaryColor
+                                                    }
+                                                    .cornerRadius(8)
+                                            }
+                                        
                                     }
+                                    .alert(isPresented: $showAlert) {
+                                                Alert(
+                                                    title: Text("Confirm Deletion"),
+                                                    message: Text("Are you sure you want to delete this subject?"),
+                                                    primaryButton: .cancel(Text("Cancel")),
+                                                    secondaryButton: .destructive(Text("Delete")) {
+                                                        deleteSubjectAction()
+                                                    }
+                                                )
+                                            }
                                 }
                             }
                             Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(height:20)
                         }
-                        .animation(.easeInOut)
-
+                        
                     }
                 }
             }
             .padding()
         }
     }
+    
+    func deleteSubjectAction() {
+            guard let subject = deleteSubject else {
+                return
+            }
+            
+            dataController.container.viewContext.delete(subject)
+            dataController.saveData()
+            deleteSubject = nil
+        }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
