@@ -13,7 +13,8 @@ struct HomeScreen: View {
     let constants = Constants()
     
     //@Environment(\.managedObjectContext) var moc
-    @StateObject private var dataController = DataController.shared
+    private var dataController = DataController.shared
+    
     
     @FetchRequest(entity: Subject.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Subject.name, ascending: true)]) var subjects : FetchedResults<Subject>
     

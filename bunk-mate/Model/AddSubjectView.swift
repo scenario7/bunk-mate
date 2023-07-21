@@ -13,7 +13,7 @@ struct AddSubjectView: View {
     let constants = Constants()
     
     //@Environment(\.managedObjectContext) var moc
-    @StateObject private var dataController = DataController.shared
+    private var dataController = DataController.shared
     
     
     @State var subjectName = ""

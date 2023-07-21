@@ -11,25 +11,31 @@ import Intents
 import CoreData
 
 struct Provider: IntentTimelineProvider {
+    
+    let subjects = getData()
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), subjects: getData())
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), subjects: getData())
     }
     
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), subjects: getData())
+        print("Snapshot called")
+        let entry = SimpleEntry(date: Date(), configuration: configuration, subjects: getData())
         completion(entry)
     }
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let subjects = getData()
-        let entry = SimpleEntry(date: Date(), subjects: subjects)
-        let timeline = Timeline(entries: [entry], policy: .atEnd)
+        print("TimeLine called")
+
+        let entry = SimpleEntry(date: Date(), configuration: configuration, subjects: getData())
+        let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let configuration : ConfigurationIntent
     let subjects: [Subject]
 }
 
@@ -37,18 +43,18 @@ struct AttendanceWidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        switch(widgetFamily){
-        case .systemSmall:
-            SmallWidgetView(entry: entry)
-        case .systemMedium:
-            LargeWidgetView(entry: entry)
-        case .accessoryRectangular:
-            AccessoryRectangularView(entry: entry)
-        case .accessoryCircular:
-            AccessoryCircular()
-        default:
-            Text("Unavail")
-        }
+            switch(widgetFamily){
+            case .systemSmall:
+                SmallWidgetView(entry: entry)
+            case .systemMedium:
+                LargeWidgetView(entry: entry)
+            case .accessoryRectangular:
+                AccessoryRectangularView(entry: entry)
+            case .accessoryCircular:
+                AccessoryCircular()
+            default:
+                Text("Unavail")
+            }
     }
 }
 
@@ -298,42 +304,39 @@ struct AttendanceWidget: Widget {
 
 private func getData() -> [Subject] {
     let container = DataController.shared.container
-    let fallBack = Subject(context: container.viewContext)
-    fallBack.name = "Add A Subject"
-    fallBack.attended = 1
-    fallBack.missed = 0
-    fallBack.requirement = 0.75
-    let request: NSFetchRequest<Subject> = Subject.fetchRequest()
-    request.sortDescriptors = [NSSortDescriptor(keyPath: \Subject.name, ascending: false)]
-    
+    let request = Subject.fetchRequest()
+    let sortDescriptor = NSSortDescriptor(keyPath: \Subject.missed, ascending: false)
+    request.sortDescriptors = [sortDescriptor]
     
     var result: [Subject] = []
     
     do {
-        result = try container.viewContext.fetch(request)
+        result.removeAll()
+        result = try container.viewContext.fetch(request) as [Subject]
+        print("RESULT BEFORE MOD")
+        print(result)
     } catch {
-        print("Could not fetch subjects: \(error)")
-        return [fallBack,fallBack,fallBack]
+        fatalError("COULD NOT FETCH: \(error)")
     }
     
-    
-    if result.count >= 3 {
-        let fallbackSubjects = result.filter { subject in
-            subject == fallBack
+    // Check if there are less than three subjects and add fallback subjects accordingly
+    let missingSubjectsCount = max(0, 3 - result.count)
+    if missingSubjectsCount > 0 {
+        let fallBack = Subject(context: container.viewContext)
+        fallBack.name = "Add A Subject"
+        fallBack.attended = 2
+        fallBack.missed = 1
+        fallBack.requirement = 0.6
+        
+        for _ in 0..<missingSubjectsCount {
+            result.append(fallBack)
         }
-        result.removeAll { subject in
-            subject == fallBack
-        }
-        result.append(contentsOf: fallbackSubjects)
-    } else if result.count == 2 {
-        result.append(fallBack)
-    } else if result.count == 1 {
-        result.append(contentsOf: [fallBack, fallBack])
     }
     
     print("RESULT IS")
     print(result)
     
     return result
-    
 }
+
+

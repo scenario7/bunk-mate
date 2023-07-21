@@ -10,25 +10,19 @@ import CoreData
 import CloudKit
 import WidgetKit
 
-class DataController : ObservableObject {
+class DataController {
     
     static let shared = DataController()
     
     let container = NSPersistentContainer(name: "Stash")
-        
-    @Published var subjects : [Subject] = []
-    
+            
     init(){
         
         let url = URL.storeURL(for: "group.com.kevinthomas.bunk-mate", database: "Stash")
         let storeDescription = NSPersistentStoreDescription(url: url)
+        container.persistentStoreDescriptions.removeAll()
         container.persistentStoreDescriptions.append(storeDescription)
-        
-        guard let description = container.persistentStoreDescriptions.first else {
-            fatalError("No descriptions found")
-        }
-        
-        //description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        print("STORE DESCRIPTIONS ARE", container.persistentStoreDescriptions)
         
         
         container.loadPersistentStores { descripion, error in
@@ -39,53 +33,19 @@ class DataController : ObservableObject {
         
         
         container.viewContext.automaticallyMergesChangesFromParent = true
-        //container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
+
     }
-    
-    @objc
-    func processUpdate(notification : NSNotification) {
-        operationQueue.addOperation{
-            
-            let context = self.container.newBackgroundContext()
-            context.performAndWait {
-                let subjects : [Subject]
-                do {
-                    try subjects = context.fetch(Subject.fetchRequest())
-                    WidgetCenter.shared.reloadAllTimelines()
-                } catch {
-                    fatalError("Error in operation queue")
-                }
-                
-                if context.hasChanges {
-                    do {
-                        try context.save()
-                    } catch {
-                        fatalError("Error saving to cloud")
-                    }
-                }
-            }
-            
-        }
-    }
-    
-    lazy var operationQueue : OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
     
     func saveData(){
         if container.viewContext.hasChanges {
             do {
+                print("Saved")
                 try container.viewContext.save()
+                WidgetCenter.shared.reloadAllTimelines()
                 let currentDate = Date()
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(currentDate, forKey: "lua")
-                WidgetCenter.shared.reloadAllTimelines()
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                
             } catch {
                 
             }

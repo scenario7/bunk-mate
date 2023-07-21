@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct PurchaseScreen: View {
     
@@ -35,6 +36,14 @@ struct PurchaseScreen: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 20, weight: .semibold))
                 }
+                Image(uiImage: UIImage(named: "AppIcon60x60") ?? UIImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit
+                    )
+                    .frame(width: 100)
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
+
                 HStack{
                     ZStack {
                         Text("₹49")
@@ -75,10 +84,9 @@ struct PurchaseScreen: View {
                     }
                     .multilineTextAlignment(.center)
                 }
-                Spacer()
                 Text("This is a one time purchase that will grant you lifetime access to all the features of BunkMate Pro")
                     .foregroundColor(.gray)
-                    .font(.system(size: 20, weight: .regular))
+                    .font(.system(size: 15, weight: .regular))
                     .multilineTextAlignment(.center)
                 Button {
                     print("Hello")
