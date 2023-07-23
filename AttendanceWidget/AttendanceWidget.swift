@@ -15,27 +15,26 @@ struct Provider: IntentTimelineProvider {
     let subjects = getData()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), subjects: getData())
+        SimpleEntry(date: Date(), subjects: getData())
     }
     
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         print("Snapshot called")
-        let entry = SimpleEntry(date: Date(), configuration: configuration, subjects: getData())
+        let entry = SimpleEntry(date: Date(), subjects: getData())
         completion(entry)
     }
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         print("TimeLine called")
 
-        let entry = SimpleEntry(date: Date(), configuration: configuration, subjects: getData())
-        let timeline = Timeline(entries: [entry], policy: .never)
+        let entry = SimpleEntry(date: Date(), subjects: getData())
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let configuration : ConfigurationIntent
     let subjects: [Subject]
 }
 
@@ -43,18 +42,23 @@ struct AttendanceWidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
+        ZStack{
             switch(widgetFamily){
             case .systemSmall:
                 SmallWidgetView(entry: entry)
+                
             case .systemMedium:
                 LargeWidgetView(entry: entry)
+                
             case .accessoryRectangular:
                 AccessoryRectangularView(entry: entry)
+                
             case .accessoryCircular:
                 AccessoryCircular()
             default:
                 Text("Unavail")
             }
+        }
     }
 }
 
@@ -93,9 +97,8 @@ struct SmallWidgetView : View {
                 .frame(height: 70)
                 Spacer()
                 Text(entry.subjects[0].name!)
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.system(size: 13, weight: .semibold))
                     .multilineTextAlignment(.center)
-                Spacer()
                 Text(getClassesSkippable(percentage:getPercentage(attended: subject1.attended, missed: subject1.missed),attended:subject1.attended,missed:subject1.missed,requirement:subject1.requirement))
                     .foregroundColor(.white.opacity(0.7))
                 .font(.system(size: 10, weight: .medium))
@@ -105,30 +108,7 @@ struct SmallWidgetView : View {
         }
     }
     
-    func getPercentage(attended : Double, missed: Double) -> Double {
-        return ((attended)/(attended+missed))
-    }
-    func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
-        if (getPercentage(attended: attended, missed: missed)) > requirement {
-            let skippable = Int((attended-requirement*(attended+missed))/requirement)
-            return "Can skip next \(skippable)"
-        } else if (getPercentage(attended: attended, missed: missed)) < requirement {
-            let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
-            return "Must attend next \(needToAttend)"
-        } else {
-            return "Cannot Skip Classes"
-        }
-    }
-    
-    func returnColor(percentage : Double, requirement : Double) -> Color{
-        if (percentage > requirement){
-            return .green
-        } else if (percentage > requirement*0.6){
-            return .yellow
-        } else {
-            return .red
-        }
-    }
+
 }
 struct LargeWidgetView : View {
     var entry : Provider.Entry
@@ -140,6 +120,9 @@ struct LargeWidgetView : View {
     }
     var subject3 : Subject {
         return entry.subjects[2]
+    }
+    var subject4 : Subject {
+        return entry.subjects[3]
     }
     
     var body: some View{
@@ -200,35 +183,30 @@ struct LargeWidgetView : View {
                     }
                     
                 }
+                HStack{
+                    Text(subject4.name!)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(.white)
+                    Spacer()
+                    Text("\(Int(getPercentage(attended:subject4.attended, missed:subject4.missed)*100))%")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(.white)
+                    ZStack(alignment:.leading){
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width:100, height: 10)
+                            .foregroundColor(.gray.opacity(0.5))
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width:getPercentage(attended: subject4.attended, missed: subject4.missed)*100, height: 10)
+                            .foregroundColor(returnColor(percentage: getPercentage(attended: subject4.attended, missed: subject4.missed), requirement: subject4.requirement))
+                    }
+                    
+                }
             }
             .padding()
         }
     }
     
-    func getPercentage(attended : Double, missed: Double) -> Double {
-        return ((attended)/(attended+missed))
-    }
-    func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
-        if (getPercentage(attended: attended, missed: missed)) > requirement {
-            let skippable = Int((attended-requirement*(attended+missed))/requirement)
-            return "Can skip next \(skippable)"
-        } else if (getPercentage(attended: attended, missed: missed)) < requirement {
-            let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
-            return "Must attend next \(needToAttend)"
-        } else {
-            return "Cannot Skip Classes"
-        }
-    }
-    
-    func returnColor(percentage : Double, requirement : Double) -> Color{
-        if (percentage > requirement){
-            return .green
-        } else if (percentage > requirement*0.6){
-            return .yellow
-        } else {
-            return .red
-        }
-    }
+
 }
 struct AccessoryRectangularView : View {
     var entry : Provider.Entry
@@ -251,29 +229,31 @@ struct AccessoryRectangularView : View {
             }
         }
     }
-    func getPercentage(attended : Double, missed: Double) -> Double {
-        return ((attended)/(attended+missed))
+
+}
+
+func getPercentage(attended : Double, missed: Double) -> Double {
+    return ((attended)/(attended+missed))
+}
+func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
+    if (getPercentage(attended: attended, missed: missed)) > requirement {
+        let skippable = Int((attended-requirement*(attended+missed))/requirement)
+        return "Can skip next \(skippable)"
+    } else if (getPercentage(attended: attended, missed: missed)) < requirement {
+        let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
+        return "Must attend next \(needToAttend)"
+    } else {
+        return "Cannot Skip Classes"
     }
-    func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
-        if (getPercentage(attended: attended, missed: missed)) > requirement {
-            let skippable = Int((attended-requirement*(attended+missed))/requirement)
-            return "Can skip next \(skippable)"
-        } else if (getPercentage(attended: attended, missed: missed)) < requirement {
-            let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
-            return "Must attend next \(needToAttend)"
-        } else {
-            return "Cannot Skip Classes"
-        }
-    }
-    
-    func returnColor(percentage : Double, requirement : Double) -> Color{
-        if (percentage > requirement){
-            return .green
-        } else if (percentage > requirement*0.6){
-            return .yellow
-        } else {
-            return .red
-        }
+}
+
+func returnColor(percentage : Double, requirement : Double) -> Color{
+    if (percentage > requirement){
+        return .green
+    } else if (percentage > requirement*0.6){
+        return .yellow
+    } else {
+        return .red
     }
 }
 
@@ -292,21 +272,76 @@ struct AccessoryCircular : View {
 struct AttendanceWidget: Widget {
     let kind: String = "AttendanceWidget"
     
+    private let supportedFamilies: [WidgetFamily] = {
+        if #available(iOSApplicationExtension 16.0, *) {
+            return [.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular]
+        } else if #available(iOSApplicationExtension 15.0, *) {
+            return [.systemSmall, .systemMedium]
+        } else {
+            return [.systemSmall, .systemMedium]
+        }
+    }()
+    
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             AttendanceWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
-        .supportedFamilies([.accessoryRectangular,.systemSmall,.systemMedium,.accessoryCircular])
+        .configurationDisplayName("Attendance Widget")
+        .description("This widget shows your attendance statistics")
+        .supportedFamilies(supportedFamilies)
     }
 }
 
 private func getData() -> [Subject] {
     let container = DataController.shared.container
     let request = Subject.fetchRequest()
+    let sortDescriptor = NSSortDescriptor(keyPath: \Subject.missed, ascending: true) // Sort in ascending order of missed days
+    request.sortDescriptors = [sortDescriptor]
+    
+    var result: [Subject] = []
+    
+    do {
+        result.removeAll()
+        result = try container.viewContext.fetch(request) as [Subject]
+    } catch {
+        fatalError("COULD NOT FETCH: \(error)")
+    }
+    
+    result.sort { (subject1, subject2) -> Bool in
+        let attendancePercentage1 = Double(subject1.attended) / Double(subject1.attended + subject1.missed)
+        let attendancePercentage2 = Double(subject2.attended) / Double(subject2.attended + subject2.missed)
+        return attendancePercentage1 < attendancePercentage2
+    }
+    
+    if result.count < 4 {
+        // Calculate the number of fallback subjects needed
+        let fallbackCount = 4 - result.count
+        
+        for _ in 0..<fallbackCount {
+            let fallBackSubject = Subject(context: container.viewContext)
+            fallBackSubject.name = "Add A Subject"
+            fallBackSubject.attended = 3
+            fallBackSubject.missed = 0
+            fallBackSubject.requirement = 0.75
+            result.append(fallBackSubject)
+        }
+    }
+    
+    return result
+}
+
+
+private func getData1() -> [Subject] {
+    let container = DataController.shared.container
+    let request = Subject.fetchRequest()
     let sortDescriptor = NSSortDescriptor(keyPath: \Subject.missed, ascending: false)
     request.sortDescriptors = [sortDescriptor]
+    
+    let fallBackSubject = Subject(context: container.viewContext)
+    fallBackSubject.name = "Add A Subject"
+    fallBackSubject.attended = 3
+    fallBackSubject.missed = 1
+    fallBackSubject.requirement = 0.75
     
     var result: [Subject] = []
     
@@ -317,20 +352,6 @@ private func getData() -> [Subject] {
         print(result)
     } catch {
         fatalError("COULD NOT FETCH: \(error)")
-    }
-    
-    // Check if there are less than three subjects and add fallback subjects accordingly
-    let missingSubjectsCount = max(0, 3 - result.count)
-    if missingSubjectsCount > 0 {
-        let fallBack = Subject(context: container.viewContext)
-        fallBack.name = "Add A Subject"
-        fallBack.attended = 2
-        fallBack.missed = 1
-        fallBack.requirement = 0.6
-        
-        for _ in 0..<missingSubjectsCount {
-            result.append(fallBack)
-        }
     }
     
     print("RESULT IS")

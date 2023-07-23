@@ -1,0 +1,33 @@
+{
+  "identifier" : "66E4C126",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "F7466A42",
+      "localizations" : [
+        {
+          "description" : "Pay Once, Access Forever",
+          "displayName" : "BunkMate Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "bunkmatepro_all_access",
+      "referenceName" : "BunkMate Pro 2",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

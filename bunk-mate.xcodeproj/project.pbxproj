@@ -11,6 +11,10 @@
 		520485E62A6A982200D4C5E6 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D482A5F2AA6003F9030 /* DataController.swift */; };
 		520485E92A6A9DCE00D4C5E6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D562A62DE91003F9030 /* WidgetKit.framework */; };
 		520485EC2A6A9DCF00D4C5E6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D582A62DE91003F9030 /* SwiftUI.framework */; };
+		525243652A6AE56200E670CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243642A6AE56100E670CC /* SceneDelegate.swift */; };
+		525243682A6B302A00E670CC /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243672A6B302A00E670CC /* StoreController.swift */; };
+		528E552F2A6C4A0B0074DCEF /* AppIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E552E2A6C4A0B0074DCEF /* AppIconController.swift */; };
+		528E55312A6C4ADB0074DCEF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E55302A6C4ADB0074DCEF /* SettingsView.swift */; };
 		52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00CF32A5C9624003F9030 /* bunk_mateApp.swift */; };
 		52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00CF52A5C9624003F9030 /* ContentView.swift */; };
 		52A00CF82A5C9626003F9030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A00CF72A5C9626003F9030 /* Assets.xcassets */; };
@@ -83,7 +87,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		52A00D6B2A62DE94003F9030 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
@@ -95,6 +99,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		525243642A6AE56100E670CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		525243662A6B2F0F00E670CC /* Product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Product.storekit; sourceTree = "<group>"; };
+		525243672A6B302A00E670CC /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
+		528E552E2A6C4A0B0074DCEF /* AppIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconController.swift; sourceTree = "<group>"; };
+		528E55302A6C4ADB0074DCEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		52A00CF02A5C9624003F9030 /* bunk-mate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bunk-mate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A00CF32A5C9624003F9030 /* bunk_mateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bunk_mateApp.swift; sourceTree = "<group>"; };
 		52A00CF52A5C9624003F9030 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -201,6 +210,8 @@
 				52A00D322A5C9884003F9030 /* Controller */,
 				52A00D1E2A5C97C6003F9030 /* fonts */,
 				52A00CF32A5C9624003F9030 /* bunk_mateApp.swift */,
+				525243662A6B2F0F00E670CC /* Product.storekit */,
+				525243642A6AE56100E670CC /* SceneDelegate.swift */,
 				52A00CF72A5C9626003F9030 /* Assets.xcassets */,
 				52A00CF92A5C9626003F9030 /* bunk_mate.entitlements */,
 				52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */,
@@ -258,6 +269,7 @@
 				52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */,
 				52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */,
 				52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */,
+				528E55302A6C4ADB0074DCEF /* SettingsView.swift */,
 			);
 			name = View;
 			path = Model;
@@ -267,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				52A00D482A5F2AA6003F9030 /* DataController.swift */,
+				528E552E2A6C4A0B0074DCEF /* AppIconController.swift */,
+				525243672A6B302A00E670CC /* StoreController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -465,17 +479,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528E55312A6C4ADB0074DCEF /* SettingsView.swift in Sources */,
 				52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
 				52A00D642A62DE93003F9030 /* AttendanceWidget.intentdefinition in Sources */,
 				52A00D452A5EC853003F9030 /* Stash.xcdatamodeld in Sources */,
 				52A00D3C2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
 				52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
 				52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */,
+				528E552F2A6C4A0B0074DCEF /* AppIconController.swift in Sources */,
 				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */,
 				52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */,
 				52A00D342A5C98A0003F9030 /* Constants.swift in Sources */,
+				525243682A6B302A00E670CC /* StoreController.swift in Sources */,
+				525243652A6AE56200E670CC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,8 +670,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = ProAppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -663,6 +683,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "bunk-mate/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = BunkMate;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -692,8 +713,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = ProAppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -703,6 +726,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "bunk-mate/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = BunkMate;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -829,9 +853,9 @@
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AttendanceWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AttendanceWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "Attendance Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -860,9 +884,9 @@
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AttendanceWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AttendanceWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "Attendance Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
