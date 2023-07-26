@@ -22,7 +22,7 @@ class DataController {
         let storeDescription = NSPersistentStoreDescription(url: url)
         container.persistentStoreDescriptions.removeAll()
         container.persistentStoreDescriptions.append(storeDescription)
-        print("STORE DESCRIPTIONS ARE", container.persistentStoreDescriptions)
+        storeDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         
         
         container.loadPersistentStores { descripion, error in
@@ -35,8 +35,13 @@ class DataController {
         container.viewContext.automaticallyMergesChangesFromParent = true
         
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateWidget), name: .NSManagedObjectContextObjectsDidChange, object: nil)
 
+    }
+    
+    @objc
+    func updateWidget(){
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     @objc
@@ -48,7 +53,6 @@ class DataController {
                 let subjects : [Subject]
                 do {
                     try subjects = context.fetch(Subject.fetchRequest())
-                    
                     print("Processed")
                 } catch {
                     fatalError("Error in operation queue")
@@ -75,16 +79,13 @@ class DataController {
     func saveData(){
         if container.viewContext.hasChanges {
             do {
-                print("Saved")
                 try container.viewContext.save()
-                let currentDate = Date()
-                let userDefaults = UserDefaults.standard
-                userDefaults.set(currentDate, forKey: "lua")
+                UserDefaults.standard.set(Date(), forKey: "lua")
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
             } catch {
                 
             }
-            WidgetCenter.shared.reloadAllTimelines()
+
         }
 
     }

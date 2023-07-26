@@ -6,18 +6,47 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
+import WidgetKit
+import Combine
+import CoreData
+
 
 @main
 struct bunk_mateApp: App {
     
     private var dataController = DataController.shared
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    let observer = AppObserver(context: DataController.shared.container.viewContext)
+    
+    init(){
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+    }
 
     
     var body: some Scene {
         WindowGroup {
-            HomeScreen()
+            SplashScreenView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
 
+
+class AppDelegate : NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        return true
+    }
+}
+
+
+class AppObserver {
+    private var cancellables: Set<AnyCancellable> = []
+    init(context: NSManagedObjectContext) {
+        NotificationCenter.Publisher(center: .default, name: .NSManagedObjectContextObjectsDidChange, object: context)
+            .sink { _ in
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+            .store(in: &cancellables)
+    }
+}

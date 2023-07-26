@@ -103,6 +103,10 @@ struct PurchaseScreen: View {
                     }
                     .frame(height: 50)
                 }
+                Text("⚠️ Restart app after purchase")
+                    .foregroundColor(.yellow)
+                    .font(.system(size: 20, weight: .semibold))
+                    .multilineTextAlignment(.center)
 
             }
             .padding()

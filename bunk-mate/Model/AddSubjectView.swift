@@ -164,6 +164,7 @@ struct AddSubjectView: View {
                     newSubject.requirement = requirement*0.01
                     
                     dataController.saveData()
+                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.endEditing(true)
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     ZStack{

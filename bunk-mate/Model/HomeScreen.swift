@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreData
-import WidgetKit
+import GoogleMobileAds
 
 struct HomeScreen: View {
     
@@ -31,6 +31,8 @@ struct HomeScreen: View {
     let columns = [
         GridItem(.adaptive(minimum: 300))
     ]
+    
+    @State var appleWatchSubjects : [Subject] = []
     
     var actionDate: String {
         let userDefaults = UserDefaults.standard
@@ -85,7 +87,7 @@ struct HomeScreen: View {
                             ZStack{
                                 Circle()
                                     .foregroundColor(constants.primaryColor)
-                                Image(systemName: "gear")
+                                Image(systemName: "gearshape")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .foregroundColor(constants.accent)
@@ -120,16 +122,28 @@ struct HomeScreen: View {
                     }
                     
                 }
+                .padding(.top)
+                LinearGradient(colors: [.black,constants.accent,.black], startPoint: .leading, endPoint: .trailing)
+                    .mask {
+                        Rectangle()
+                            .frame(height: 3)
+                            .foregroundColor(constants.accent)
+                    }
+                    .frame(height: 3)
                 Rectangle()
-                    .frame(height: 30)
+                    .frame(height: 17)
                     .foregroundColor(.clear)
+                if(!storeController.purchasedBunkMatePro){
+                    BannerAd(unitID: "ca-app-pub-3940256099942544/2934735716")
+                        .frame(width: 320, height: 50)
+                }
                     ScrollView(.vertical, showsIndicators: false) {
                         LazyVGrid(columns:columns, spacing : 10){
                             ForEach(subjects){ subject in
                                 VStack {
                                     AttendanceCard(name: subject.name ?? "Unknown", attended: subject.attended, missed: subject.missed, requirement: subject.requirement)
                                     HStack(alignment:.bottom){
-                                        VStack {
+                                        VStack(alignment:.center) {
                                             Text("Attended")
                                                 .font(.system(size: 13))
                                                 .foregroundColor(.white)
@@ -137,12 +151,11 @@ struct HomeScreen: View {
                                                 Button {
                                                     subject.attended-=1
                                                     dataController.saveData()
-                                                    
-
                                                 } label: {
                                                     Image(systemName: "minus.circle")
                                                         .foregroundColor((subject.attended==0) || (subject.missed==0 && subject.attended==1) ? .gray : constants.accent)
                                                         .padding(4)
+                                                        .frame(width:30, height:30)
                                                         .background {
                                                             constants.primaryColor
                                                         }
@@ -158,6 +171,7 @@ struct HomeScreen: View {
                                                         Image(systemName: "plus.circle")
                                                             .foregroundColor(constants.accent)
                                                             .padding(4)
+                                                            .frame(width:30, height:30)
                                                             .background {
                                                                 constants.primaryColor
                                                             }
@@ -170,6 +184,7 @@ struct HomeScreen: View {
                                         Button {
                                             deleteSubject = subject
                                             showAlert = true
+                                            UINotificationFeedbackGenerator().notificationOccurred(.warning)
                                         } label: {
                                             Text("Delete")
                                                 .font(.system(size: 17, weight: .semibold))
@@ -207,6 +222,7 @@ struct HomeScreen: View {
                                                         Image(systemName: "minus.circle")
                                                             .foregroundColor((subject.attended==0 && subject.missed==1) || (subject.missed==0) ? .gray : constants.accent)
                                                             .padding(4)
+                                                            .frame(width:30, height:30)
                                                             .background {
                                                                 constants.primaryColor
                                                             }
@@ -222,6 +238,7 @@ struct HomeScreen: View {
                                                         Image(systemName: "plus.circle")
                                                             .foregroundColor(constants.accent)
                                                             .padding(4)
+                                                            .frame(width:30, height:30)
                                                             .background {
                                                                 constants.primaryColor
                                                             }
@@ -244,17 +261,26 @@ struct HomeScreen: View {
                                     Rectangle()
                                         .foregroundColor(.clear)
                                         .frame(height:20)
+
                                 }
                                 
                             }
+                        }
+                        if(!storeController.purchasedBunkMatePro){
+                            Spacer()
+                            BannerAd(unitID: "ca-app-pub-3940256099942544/2934735716")
+                                .frame(width: 320, height: 50)
                         }
                     }
                     .ignoresSafeArea()
             }
             .padding(.horizontal)
             .onAppear{
+                GADMobileAds.sharedInstance().start(completionHandler: nil)
                 storeController.fetchProducts()
             }
+            .statusBar(hidden: true)
+
         }
     }
     
@@ -268,7 +294,6 @@ struct HomeScreen: View {
             deleteSubject = nil
         }
 }
-
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
