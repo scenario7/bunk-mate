@@ -8,6 +8,10 @@
 	<array>
 		<string>ConfigurationIntent</string>
 	</array>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    </array>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

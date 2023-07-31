@@ -75,7 +75,11 @@ struct AttendanceCard: View {
     func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
         if (getPercentage(attended: attended, missed: missed)) > requirement {
             let skippable = Int((attended-requirement*(attended+missed))/requirement)
-            return "Can Skip \(skippable) Classes"
+            if skippable == 0 {
+                return "Cannot skip classes"
+            } else {
+                return "Can skip next \(skippable)"
+            }
         } else if (getPercentage(attended: attended, missed: missed)) < requirement {
             let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
             return "Must attend \(needToAttend) Classes"

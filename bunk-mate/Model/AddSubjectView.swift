@@ -158,7 +158,7 @@ struct AddSubjectView: View {
                 .padding()
                 Button {
                     let newSubject = Subject(context: dataController.container.viewContext)
-                    newSubject.name = subjectName
+                    newSubject.name = subjectName.trimmingCharacters(in: .whitespacesAndNewlines)
                     newSubject.attended = attended
                     newSubject.missed = missed
                     newSubject.requirement = requirement*0.01

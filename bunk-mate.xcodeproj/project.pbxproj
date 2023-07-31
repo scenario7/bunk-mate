@@ -14,9 +14,8 @@
 		525243652A6AE56200E670CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243642A6AE56100E670CC /* SceneDelegate.swift */; };
 		525243682A6B302A00E670CC /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243672A6B302A00E670CC /* StoreController.swift */; };
 		528E55312A6C4ADB0074DCEF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E55302A6C4ADB0074DCEF /* SettingsView.swift */; };
-		528E556A2A6D5D9A0074DCEF /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 528E55692A6D5D9A0074DCEF /* GoogleMobileAds */; };
-		528E556E2A6D5EC20074DCEF /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E556D2A6D5EC20074DCEF /* BannerAd.swift */; };
 		528E55702A6DB3F20074DCEF /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E556F2A6DB3F20074DCEF /* SplashScreenView.swift */; };
+		528E55752A716DA80074DCEF /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243672A6B302A00E670CC /* StoreController.swift */; };
 		52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00CF32A5C9624003F9030 /* bunk_mateApp.swift */; };
 		52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00CF52A5C9624003F9030 /* ContentView.swift */; };
 		52A00CF82A5C9626003F9030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A00CF72A5C9626003F9030 /* Assets.xcassets */; };
@@ -103,7 +102,6 @@
 		525243662A6B2F0F00E670CC /* Product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Product.storekit; sourceTree = "<group>"; };
 		525243672A6B302A00E670CC /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		528E55302A6C4ADB0074DCEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		528E556D2A6D5EC20074DCEF /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
 		528E556F2A6DB3F20074DCEF /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		52A00CF02A5C9624003F9030 /* bunk-mate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bunk-mate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A00CF32A5C9624003F9030 /* bunk_mateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bunk_mateApp.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528E556A2A6D5D9A0074DCEF /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +269,6 @@
 				52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */,
 				528E55302A6C4ADB0074DCEF /* SettingsView.swift */,
 				528E556F2A6DB3F20074DCEF /* SplashScreenView.swift */,
-				528E556D2A6D5EC20074DCEF /* BannerAd.swift */,
 			);
 			name = View;
 			path = Model;
@@ -326,7 +322,6 @@
 			);
 			name = "bunk-mate";
 			packageProductDependencies = (
-				528E55692A6D5D9A0074DCEF /* GoogleMobileAds */,
 			);
 			productName = "bunk-mate";
 			productReference = 52A00CF02A5C9624003F9030 /* bunk-mate.app */;
@@ -421,7 +416,6 @@
 			);
 			mainGroup = 52A00CE72A5C9624003F9030;
 			packageReferences = (
-				528E55682A6D5D9A0074DCEF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 52A00CF12A5C9624003F9030 /* Products */;
 			projectDirPath = "";
@@ -493,7 +487,6 @@
 				52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
 				52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */,
 				528E55702A6DB3F20074DCEF /* SplashScreenView.swift in Sources */,
-				528E556E2A6D5EC20074DCEF /* BannerAd.swift in Sources */,
 				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */,
@@ -539,6 +532,7 @@
 				52A00D5E2A62DE91003F9030 /* AttendanceWidget.swift in Sources */,
 				520485E52A6A981F00D4C5E6 /* Stash.xcdatamodeld in Sources */,
 				52A00D5C2A62DE91003F9030 /* AttendanceWidgetBundle.swift in Sources */,
+				528E55752A716DA80074DCEF /* StoreController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,10 +679,10 @@
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = ProAppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bunk-mate/Preview Content\"";
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -704,9 +698,9 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -728,10 +722,10 @@
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = ProAppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bunk-mate/Preview Content\"";
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -747,9 +741,9 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -966,25 +960,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		528E55682A6D5D9A0074DCEF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		528E55692A6D5D9A0074DCEF /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 528E55682A6D5D9A0074DCEF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		52A00D432A5EC853003F9030 /* Stash.xcdatamodeld */ = {

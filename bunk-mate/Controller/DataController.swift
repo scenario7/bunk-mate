@@ -41,7 +41,7 @@ class DataController {
     
     @objc
     func updateWidget(){
-        WidgetCenter.shared.reloadAllTimelines()
+        //WidgetCenter.shared.reloadAllTimelines()
     }
     
     @objc
@@ -53,6 +53,7 @@ class DataController {
                 let subjects : [Subject]
                 do {
                     try subjects = context.fetch(Subject.fetchRequest())
+                    //WidgetCenter.shared.reloadAllTimelines()
                     print("Processed")
                 } catch {
                     fatalError("Error in operation queue")
@@ -82,6 +83,7 @@ class DataController {
                 try container.viewContext.save()
                 UserDefaults.standard.set(Date(), forKey: "lua")
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                WidgetCenter.shared.reloadAllTimelines()
             } catch {
                 
             }

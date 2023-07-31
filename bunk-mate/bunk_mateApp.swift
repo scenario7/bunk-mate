@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import GoogleMobileAds
 import WidgetKit
 import Combine
 import CoreData
@@ -18,11 +17,6 @@ struct bunk_mateApp: App {
     private var dataController = DataController.shared
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let observer = AppObserver(context: DataController.shared.container.viewContext)
-    
-    init(){
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-    }
-
     
     var body: some Scene {
         WindowGroup {
@@ -45,8 +39,9 @@ class AppObserver {
     init(context: NSManagedObjectContext) {
         NotificationCenter.Publisher(center: .default, name: .NSManagedObjectContextObjectsDidChange, object: context)
             .sink { _ in
-                WidgetCenter.shared.reloadAllTimelines()
+                //WidgetCenter.shared.reloadAllTimelines()
             }
             .store(in: &cancellables)
     }
 }
+

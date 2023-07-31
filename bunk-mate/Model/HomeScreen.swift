@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CoreData
-import GoogleMobileAds
 
 struct HomeScreen: View {
     
@@ -123,6 +122,9 @@ struct HomeScreen: View {
                     
                 }
                 .padding(.top)
+                Rectangle()
+                    .frame(height: 8)
+                    .foregroundColor(.clear)
                 LinearGradient(colors: [.black,constants.accent,.black], startPoint: .leading, endPoint: .trailing)
                     .mask {
                         Rectangle()
@@ -131,12 +133,8 @@ struct HomeScreen: View {
                     }
                     .frame(height: 3)
                 Rectangle()
-                    .frame(height: 17)
+                    .frame(height: 8)
                     .foregroundColor(.clear)
-                if(!storeController.purchasedBunkMatePro){
-                    BannerAd(unitID: "ca-app-pub-3940256099942544/2934735716")
-                        .frame(width: 320, height: 50)
-                }
                     ScrollView(.vertical, showsIndicators: false) {
                         LazyVGrid(columns:columns, spacing : 10){
                             ForEach(subjects){ subject in
@@ -266,17 +264,11 @@ struct HomeScreen: View {
                                 
                             }
                         }
-                        if(!storeController.purchasedBunkMatePro){
-                            Spacer()
-                            BannerAd(unitID: "ca-app-pub-3940256099942544/2934735716")
-                                .frame(width: 320, height: 50)
-                        }
                     }
                     .ignoresSafeArea()
             }
             .padding(.horizontal)
             .onAppear{
-                GADMobileAds.sharedInstance().start(completionHandler: nil)
                 storeController.fetchProducts()
             }
             .statusBar(hidden: true)

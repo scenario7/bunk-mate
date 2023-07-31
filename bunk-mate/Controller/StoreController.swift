@@ -64,13 +64,6 @@ class StoreController : ObservableObject {
                     case .verified(let transaction):
                         print(transaction.productID)
                         fetchProducts()
-                        if await UIApplication.shared.supportsAlternateIcons {
-                            do{
-                                try await UIApplication.shared.setAlternateIconName("ProAppIcon")
-                            } catch {
-                                print("Unable to change icon")
-                            }
-                        }
                     case .unverified(let transaction):
                         print("Unverified txn.")
                     }

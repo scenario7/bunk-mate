@@ -29,7 +29,7 @@ struct PurchaseScreen: View {
                     .offset(x:200,y:200)
                     .blur(radius: 20)
             }
-            VStack(spacing:40){
+            VStack(spacing:25){
                 VStack {
                     Text("Purchase BunkMate Pro")
                         .foregroundColor(.white)
@@ -72,14 +72,22 @@ struct PurchaseScreen: View {
                             .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color("Accent"))
                             .frame(height: 30)
+                        Image(systemName: "rectangle.3.group")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(Color("Accent"))
+                            .frame(height: 30)
 
 
                     }
-                    VStack(spacing:30){
+                    VStack(spacing:45){
                         Text("Track Unlimited Subjects")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
-                        Text("Receive all future Pro exclusive updates")
+                        Text("Future Pro Upgrades")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.white)
+                        Text("Lockscreen Widgets")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
 
@@ -90,6 +98,7 @@ struct PurchaseScreen: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 15, weight: .regular))
                     .multilineTextAlignment(.center)
+                
                 Button {
                     storeController.purchase()
                 } label: {
@@ -107,6 +116,23 @@ struct PurchaseScreen: View {
                     .foregroundColor(.yellow)
                     .font(.system(size: 20, weight: .semibold))
                     .multilineTextAlignment(.center)
+                Button {
+                    Task{
+                        try? await AppStore.sync()
+                    }
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color("Primary"))
+                        Text("Restore Purchase")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(Color("Accent"))
+
+                    }
+                    .frame(height: 50)
+                }
+
+
 
             }
             .padding()

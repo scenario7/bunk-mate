@@ -24,7 +24,6 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         let midnight = Calendar.current.startOfDay(for: Date())
-        let nextMidnight = Calendar.current.date(byAdding: .day, value: 1, to: midnight)!
         let entries = [SimpleEntry(date: midnight, subjects: getData())]
         let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
@@ -43,43 +42,20 @@ struct AttendanceWidgetEntryView : View {
     var body: some View {
             switch(widgetFamily){
             case .systemSmall:
-                ZStack{
-                    Color.black
-                    VStack{
-                        ZStack{
-                            Circle()
-                                .stroke(lineWidth: 5)
-                                .foregroundColor(.gray.opacity(0.5))
-                            Circle()
-                                .trim(from: 0, to: getPercentage(attended: entry.subjects[0].attended, missed: entry.subjects[0].missed))
-                                .stroke(lineWidth: 3)
-                                .foregroundColor(returnColor(percentage: getPercentage(attended: entry.subjects[0].attended, missed: entry.subjects[0].missed), requirement: entry.subjects[0].requirement))
-                                .animation(.easeInOut)
-                                .shadow(color: returnColor(percentage: getPercentage(attended: entry.subjects[0].attended, missed: entry.subjects[0].missed), requirement: entry.subjects[0].requirement), radius: 3)
-                                .rotationEffect(Angle(degrees: 270))
-
-                            Text("\(Int((getPercentage(attended: entry.subjects[0].attended,    missed: entry.subjects[0].missed)*100)))%")
-                                .foregroundColor(.white)
-                                .font(.system(size: 17, weight: .medium))
-                        }
-                        .frame(height: 70)
-                        Spacer()
-                        Text(entry.subjects[0].name!)
-                            .font(.system(size: 13, weight: .semibold))
-                            .multilineTextAlignment(.center)
-                        Text(getClassesSkippable(percentage:getPercentage(attended: entry.subjects[0].attended, missed: entry.subjects[0].missed),attended:entry.subjects[0].attended,missed:entry.subjects[0].missed,requirement:entry.subjects[0].requirement))
-                            .foregroundColor(.white.opacity(0.7))
-                        .font(.system(size: 10, weight: .medium))
-                    }
-                    .foregroundColor(.white)
-                    .padding()
-                }
+                SmallWidgetView(entry: entry)
                 
             case .systemMedium:
                 LargeWidgetView(entry: entry)
                 
             case .accessoryRectangular:
-                AccessoryRectangularView(entry: entry)
+                if (!StoreController().purchasedBunkMatePro){
+                    AccessoryRectangularView(entry: entry)
+                } else {
+                    Text("Purchase BunkMate Pro")
+                }
+                
+            case .accessoryCircular:
+                AccessoryCircular()
 
             default:
                 Text("Unavail")
@@ -111,7 +87,6 @@ struct SmallWidgetView : View {
                         .trim(from: 0, to: getPercentage(attended: subject1.attended, missed: subject1.missed))
                         .stroke(lineWidth: 3)
                         .foregroundColor(returnColor(percentage: getPercentage(attended: subject1.attended, missed: subject1.missed), requirement: subject1.requirement))
-                        .animation(.easeInOut)
                         .shadow(color: returnColor(percentage: getPercentage(attended: subject1.attended, missed: subject1.missed), requirement: subject1.requirement), radius: 3)
                         .rotationEffect(Angle(degrees: 270))
 
@@ -142,7 +117,11 @@ func getPercentage(attended : Double, missed: Double) -> Double {
 func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
     if (getPercentage(attended: attended, missed: missed)) > requirement {
         let skippable = Int((attended-requirement*(attended+missed))/requirement)
-        return "Can skip next \(skippable)"
+        if skippable == 0 {
+            return "Cannot skip classes"
+        } else {
+            return "Can skip next \(skippable)"
+        }
     } else if (getPercentage(attended: attended, missed: missed)) < requirement {
         let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
         return "Must attend next \(needToAttend)"
@@ -288,9 +267,23 @@ struct AccessoryRectangularView : View {
         return entry.subjects[0]
     }
     var body: some View {
-        VStack{
-            Text(subject.name!)
-                .fontWeight(.semibold)
+        VStack(spacing : 5){
+            HStack(spacing:5) {
+                Image("circularWidget")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20)
+                Rectangle()
+                    .frame(width: 1.5, height: 13)
+                Text(subject.name!)
+                    .fontWeight(.semibold)
+                Spacer()
+            }
+            HStack {
+                Text(getClassesSkippable(percentage: getPercentage(attended: subject.attended, missed: subject.missed), attended: subject.attended, missed: subject.missed, requirement: subject.requirement))
+                    .font(.system(size: 10))
+                Spacer()
+            }
             HStack{
                 Text("\(Int(getPercentage(attended:subject.attended,missed:subject.missed)*100))%")
                 ZStack(alignment:.leading){
@@ -300,6 +293,8 @@ struct AccessoryRectangularView : View {
                     RoundedRectangle(cornerRadius: 20)
                         .frame(width: getPercentage(attended: subject.attended, missed: subject.missed)*93, height: 10)
                 }
+                Spacer()
+
             }
         }
     }
@@ -309,10 +304,14 @@ struct AccessoryRectangularView : View {
     func getClassesSkippable(percentage: Double, attended : Double, missed : Double, requirement : Double) -> String{
         if (getPercentage(attended: attended, missed: missed)) > requirement {
             let skippable = Int((attended-requirement*(attended+missed))/requirement)
-            return "Can skip next \(skippable)"
+            if skippable == 0 {
+                return "Cannot skip classes"
+            } else {
+                return "Can skip next \(skippable)"
+            }
         } else if (getPercentage(attended: attended, missed: missed)) < requirement {
             let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
-            return "Must attend next \(needToAttend)"
+            return "Attend next \(needToAttend)"
         } else {
             return "Cannot Skip Classes"
         }
@@ -345,10 +344,10 @@ struct AccessoryCircular : View {
 
 struct AttendanceWidget: Widget {
     let kind: String = "AttendanceWidget"
-    
+        
     private let supportedFamilies: [WidgetFamily] = {
         if #available(iOSApplicationExtension 16.0, *) {
-            return [.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular]
+                return [.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular]
         } else if #available(iOSApplicationExtension 15.0, *) {
             return [.systemSmall, .systemMedium]
         } else {
@@ -368,6 +367,7 @@ struct AttendanceWidget: Widget {
     }
     
 }
+
 
 private func getData() -> [Subject] {
     let container = DataController.shared.container
@@ -405,4 +405,12 @@ private func getData() -> [Subject] {
     }
     
     return result
+}
+
+@available(iOSApplicationExtension 16.0, *)
+struct AttendanceWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        AttendanceWidgetEntryView(entry: SimpleEntry(date: Date(), subjects: []))
+            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+    }
 }
