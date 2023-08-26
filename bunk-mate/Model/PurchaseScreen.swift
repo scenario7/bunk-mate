@@ -33,7 +33,7 @@ struct PurchaseScreen: View {
                 VStack {
                     Text("Purchase BunkMate Pro")
                         .foregroundColor(.white)
-                    .font(.system(size: 30, weight: .semibold))
+                        .font(.system(size: 30, weight: .semibold))
                     Text("Unlock All Access Forever")
                         .foregroundColor(.gray)
                         .font(.system(size: 20, weight: .semibold))
@@ -45,21 +45,21 @@ struct PurchaseScreen: View {
                     .frame(width: 100)
                     .cornerRadius(20)
                     .shadow(radius: 10)
-
-//                HStack{
-//                    ZStack {
-//                        Text("₹49")
-//                            .font(.system(size: 50, weight: .semibold))
-//                            .foregroundColor(.white.opacity(0.7))
-//                        Text("-----")
-//                            .font(.system(size: 50, weight: .semibold))
-//                        .foregroundColor(.red)
-//                    }
-//                    Text("₹9")
-//                        .font(.system(size: 50, weight: .semibold))
-//                        .foregroundColor(.white)
-//
-//                }
+                
+                //                HStack{
+                //                    ZStack {
+                //                        Text("₹49")
+                //                            .font(.system(size: 50, weight: .semibold))
+                //                            .foregroundColor(.white.opacity(0.7))
+                //                        Text("-----")
+                //                            .font(.system(size: 50, weight: .semibold))
+                //                        .foregroundColor(.red)
+                //                    }
+                //                    Text("₹9")
+                //                        .font(.system(size: 50, weight: .semibold))
+                //                        .foregroundColor(.white)
+                //
+                //                }
                 HStack(spacing:30){
                     VStack(spacing:40){
                         Image(systemName: "internaldrive")
@@ -77,8 +77,8 @@ struct PurchaseScreen: View {
                             .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color("Accent"))
                             .frame(height: 30)
-
-
+                        
+                        
                     }
                     VStack(spacing:45){
                         Text("Track Unlimited Subjects")
@@ -90,7 +90,7 @@ struct PurchaseScreen: View {
                         Text("Lockscreen Widgets")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
-
+                        
                     }
                     .multilineTextAlignment(.center)
                 }
@@ -99,18 +99,23 @@ struct PurchaseScreen: View {
                     .font(.system(size: 15, weight: .regular))
                     .multilineTextAlignment(.center)
                 
-                Button {
-                    storeController.purchase()
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(storeController.purchasedIDs.isEmpty ? Color("Accent") : Color.gray)
-                        Text(storeController.purchasedIDs.isEmpty ? "Buy \(storeController.products.first?.displayName ?? "BunkMate Pro")" : "Already Purchased")
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.black)
+                
+                ForEach(storeController.storeProducts){ product in
+                    Button {
+                        Task{
+                            try? await storeController.purchase(product)
+                        }
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color("Accent"))
+                            Text("Purchase " + product.displayName)
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.black)
 
+                        }
+                        .frame(height: 50)
                     }
-                    .frame(height: 50)
                 }
                 Text("⚠️ Restart app after purchase")
                     .foregroundColor(.yellow)
@@ -138,13 +143,7 @@ struct PurchaseScreen: View {
             .padding()
             
         }
-        .onAppear{
-            storeController.fetchProducts()
-        }
-        .onChange(of: storeController.purchasedIDs) { _ in
-            self.isPresented.wrappedValue.dismiss()
-            storeController.fetchProducts()
-        }
+
     }
 }
 

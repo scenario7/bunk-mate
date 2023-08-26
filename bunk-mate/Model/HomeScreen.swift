@@ -20,10 +20,13 @@ struct HomeScreen: View {
     @FetchRequest(entity: Subject.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Subject.name, ascending: true)]) var subjects : FetchedResults<Subject>
     
     @State var addSubjectIsShown = false
+    @State var historyIsShown = false
     @State private var deleteSubject: Subject?
     @State private var showAlert = false
     @State private var showPurchase = false
     @State private var showSettings = false
+    
+    @State var hasPurchased = false
     
     @State private var showNotPurchasedAlert = false
     
@@ -47,81 +50,86 @@ struct HomeScreen: View {
         ZStack(alignment:.topLeading){
             Color.black.ignoresSafeArea()
             VStack {
-                HStack {
-                    VStack(alignment:.leading){
-                        Text(Date().formatted(date: .abbreviated, time: .omitted).uppercased())
-                            .foregroundColor(.gray)
-                            .font(.system(size: 17, weight: .semibold))
-                        Text("Your Attendance")
-                            .foregroundColor(.white)
-                            .font(.system(size: 27, weight: .semibold))
-                        Text("Last Updated on \(actionDate)")
-                            .foregroundColor(.gray)
-                            .font(.system(size: 15, weight: .medium))
+                VStack(alignment:.leading) {
+                    HStack {
+                        VStack(alignment:.leading){
+                            Text(Date().formatted(date: .abbreviated, time: .omitted).uppercased())
+                                .foregroundColor(.gray)
+                                .font(.system(size: 17, weight: .semibold))
+                            Text("Your Attendance")
+                                .foregroundColor(.white)
+                                .font(.system(size: 27, weight: .semibold))
+                            Text("Last Updated on \(actionDate)")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 15, weight: .medium))
+                            
+                        }
+                        Spacer()
+                        if (!hasPurchased){
+                            Button {
+                                showPurchase.toggle()
+                            } label: {
+                                ZStack{
+                                    Circle()
+                                        .foregroundColor(constants.primaryColor)
+                                    Image(systemName: "bag")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .foregroundColor(constants.accent)
+                                        .padding(14)
+                                }
+                                .frame(height: 50)
+                            }
+                            .sheet(isPresented: $showPurchase) {
+                                PurchaseScreen()
+                            }
+                        } else {
+                            Button {
+                                showSettings.toggle()
+                            } label: {
+                                ZStack{
+                                    Circle()
+                                        .foregroundColor(constants.primaryColor)
+                                    Image(systemName: "gearshape")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .foregroundColor(constants.accent)
+                                        .padding(14)
+                                }
+                                .frame(height: 50)
+                            }
+                            .sheet(isPresented: $showSettings) {
+                                SettingsView()
+                            }
+                        }
+                        Button {
+                            if ((subjects.count >= 2) && (hasPurchased == false)){
+                                showNotPurchasedAlert.toggle()
+                            } else {
+                                addSubjectIsShown.toggle()
+                            }
+                        } label: {
+                            ZStack{
+                                Circle()
+                                    .foregroundColor(constants.primaryColor)
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundColor(constants.accent)
+                                    .padding(14)
+                            }
+                            .frame(height: 50)
+                        }
+                        .sheet(isPresented: $addSubjectIsShown) {
+                            AddSubjectView()
+                        }
+                        .sheet(isPresented: $historyIsShown) {
+                            HistoricalView()
+                        }
                         
                     }
-                    Spacer()
-                    if (!storeController.purchasedBunkMatePro){
-                        Button {
-                            showPurchase.toggle()
-                        } label: {
-                            ZStack{
-                                Circle()
-                                    .foregroundColor(constants.primaryColor)
-                                Image(systemName: "bag")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(constants.accent)
-                                    .padding(14)
-                            }
-                            .frame(height: 50)
-                        }
-                        .sheet(isPresented: $showPurchase) {
-                            PurchaseScreen()
-                        }
-                    } else {
-                        Button {
-                            showSettings.toggle()
-                        } label: {
-                            ZStack{
-                                Circle()
-                                    .foregroundColor(constants.primaryColor)
-                                Image(systemName: "gearshape")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(constants.accent)
-                                    .padding(14)
-                            }
-                            .frame(height: 50)
-                        }
-                        .sheet(isPresented: $showSettings) {
-                            SettingsView()
-                        }
-                    }
-                    Button {
-                        if ((subjects.count >= 2) && (storeController.purchasedIDs.isEmpty == true)){
-                            showNotPurchasedAlert.toggle()
-                        } else {
-                            addSubjectIsShown.toggle()
-                        }
-                    } label: {
-                        ZStack{
-                            Circle()
-                                .foregroundColor(constants.primaryColor)
-                            Image(systemName: "plus")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(constants.accent)
-                                .padding(14)
-                        }
-                        .frame(height: 50)
-                    }
-                    .sheet(isPresented: $addSubjectIsShown) {
-                        AddSubjectView()
-                    }
-                    
+                    .padding(.top)
                 }
-                .padding(.top)
                 Rectangle()
                     .frame(height: 8)
                     .foregroundColor(.clear)
@@ -148,7 +156,15 @@ struct HomeScreen: View {
                                             HStack{
                                                 Button {
                                                     subject.attended-=1
+                                                    
+                                                    let newHistory = HistoricAction(context: dataController.container.viewContext)
+                                                    newHistory.subjectName = subject.name
+                                                    newHistory.attended = true
+                                                    newHistory.incremented = false
+                                                    newHistory.dateSavedAt = Date.now
+                                                    
                                                     dataController.saveData()
+                                                    
                                                 } label: {
                                                     Image(systemName: "minus.circle")
                                                         .foregroundColor((subject.attended==0) || (subject.missed==0 && subject.attended==1) ? .gray : constants.accent)
@@ -162,7 +178,15 @@ struct HomeScreen: View {
                                                 .disabled((subject.attended==0) || (subject.missed==0 && subject.attended==1))
                                                 Button {
                                                     subject.attended+=1
+                                                    
+                                                    let newHistory = HistoricAction(context: dataController.container.viewContext)
+                                                    newHistory.subjectName = subject.name
+                                                    newHistory.attended = true
+                                                    newHistory.incremented = true
+                                                    newHistory.dateSavedAt = Date.now
+                                                    
                                                     dataController.saveData()
+                                                    
                                                     
 
                                                 } label: {
@@ -213,6 +237,13 @@ struct HomeScreen: View {
                                             HStack{
                                                 Button {
                                                     subject.missed-=1
+                                                    
+                                                    let newHistory = HistoricAction(context: dataController.container.viewContext)
+                                                    newHistory.subjectName = subject.name
+                                                    newHistory.attended = false
+                                                    newHistory.incremented = false
+                                                    newHistory.dateSavedAt = Date.now
+                                                    
                                                     dataController.saveData()
                                                     
 
@@ -230,6 +261,13 @@ struct HomeScreen: View {
                                                 
                                                 Button {
                                                     subject.missed+=1
+                                                    
+                                                    let newHistory = HistoricAction(context: dataController.container.viewContext)
+                                                    newHistory.subjectName = subject.name
+                                                    newHistory.attended = false
+                                                    newHistory.incremented = true
+                                                    newHistory.dateSavedAt = Date.now
+                                                    
                                                     dataController.saveData()
                                                     
                                                 } label: {
@@ -266,12 +304,30 @@ struct HomeScreen: View {
                         }
                     }
                     .ignoresSafeArea()
+                Button {
+                    historyIsShown.toggle()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius:10)
+                            .foregroundColor(constants.primaryColor)
+                        Text("View History")
+                            .foregroundColor(constants.accent)
+                    }
+                    .frame(width:150, height:40)
+                }
             }
             .padding(.horizontal)
             .onAppear{
-                storeController.fetchProducts()
+                if(storeController.purchasedProducts.isEmpty == false){
+                    self.hasPurchased = true
+                }
             }
             .statusBar(hidden: true)
+            .onChange(of: storeController.purchasedProducts) { product in
+                Task {
+                    self.hasPurchased = true
+                }
+            }
 
         }
     }

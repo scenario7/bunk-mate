@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 import CoreData
+import UIKit
 
 struct Provider: TimelineProvider {
     let subjects = getData()
@@ -48,7 +49,7 @@ struct AttendanceWidgetEntryView : View {
                 LargeWidgetView(entry: entry)
                 
             case .accessoryRectangular:
-                if (!StoreController().purchasedBunkMatePro){
+                if (!StoreController().purchasedProducts.isEmpty == false){
                     AccessoryRectangularView(entry: entry)
                 } else {
                     Text("Purchase BunkMate Pro")

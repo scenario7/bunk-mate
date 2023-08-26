@@ -42,11 +42,6 @@ struct SplashScreenView: View {
                                 Text("BunkMate")
                                         .foregroundColor(.white)
                                     .font(.system(size: 30, weight: .bold))
-                                if(!storeController.purchasedBunkMatePro){
-                                    Text("Pro")
-                                            .foregroundColor(.yellow)
-                                        .font(.system(size: 30, weight: .bold))
-                                }
                             }
                         }
                     }

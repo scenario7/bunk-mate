@@ -11,6 +11,8 @@
 		520485E62A6A982200D4C5E6 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A00D482A5F2AA6003F9030 /* DataController.swift */; };
 		520485E92A6A9DCE00D4C5E6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D562A62DE91003F9030 /* WidgetKit.framework */; };
 		520485EC2A6A9DCF00D4C5E6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D582A62DE91003F9030 /* SwiftUI.framework */; };
+		52152F702A7C28CD009AF302 /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52152F6F2A7C28CD009AF302 /* ProductList.plist */; };
+		52152F712A7C28CD009AF302 /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52152F6F2A7C28CD009AF302 /* ProductList.plist */; };
 		525243652A6AE56200E670CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243642A6AE56100E670CC /* SceneDelegate.swift */; };
 		525243682A6B302A00E670CC /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243672A6B302A00E670CC /* StoreController.swift */; };
 		528E55312A6C4ADB0074DCEF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E55302A6C4ADB0074DCEF /* SettingsView.swift */; };
@@ -57,6 +59,13 @@
 		52A00D612A62DE93003F9030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A00D602A62DE93003F9030 /* Assets.xcassets */; };
 		52A00D672A62DE94003F9030 /* AttendanceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 52A00D542A62DE91003F9030 /* AttendanceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */; };
+		52EE43E22A8B7A510062C0E9 /* TimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E12A8B7A510062C0E9 /* TimeTableView.swift */; };
+		52EE43E52A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E32A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift */; };
+		52EE43E62A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E32A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift */; };
+		52EE43E72A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E42A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift */; };
+		52EE43E82A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E42A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift */; };
+		52EE43EA2A9A0D390062C0E9 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */; };
+		52EE43EB2A9A0D390062C0E9 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +107,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		52152F6F2A7C28CD009AF302 /* ProductList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ProductList.plist; sourceTree = "<group>"; };
 		525243642A6AE56100E670CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		525243662A6B2F0F00E670CC /* Product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Product.storekit; sourceTree = "<group>"; };
 		525243672A6B302A00E670CC /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
@@ -135,6 +145,10 @@
 		52A00D622A62DE93003F9030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52A0E9BC2A6484C900303DA5 /* AttendanceWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AttendanceWidgetExtension.entitlements; sourceTree = "<group>"; };
 		52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreen.swift; sourceTree = "<group>"; };
+		52EE43E12A8B7A510062C0E9 /* TimeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableView.swift; sourceTree = "<group>"; };
+		52EE43E32A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HistoricAction+CoreDataClass.swift"; path = "bunk-mate/HistoricAction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		52EE43E42A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HistoricAction+CoreDataProperties.swift"; path = "bunk-mate/HistoricAction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +188,9 @@
 		52A00CE72A5C9624003F9030 = {
 			isa = PBXGroup;
 			children = (
+				52EE43E32A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift */,
+				52EE43E42A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift */,
+				52152F6F2A7C28CD009AF302 /* ProductList.plist */,
 				52A0E9BC2A6484C900303DA5 /* AttendanceWidgetExtension.entitlements */,
 				52A00CF22A5C9624003F9030 /* bunk-mate */,
 				52A00D042A5C9626003F9030 /* bunk-mateTests */,
@@ -264,6 +281,8 @@
 				52A00CF52A5C9624003F9030 /* ContentView.swift */,
 				52A00D372A5D60A7003F9030 /* AttendanceCard.swift */,
 				52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */,
+				52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */,
+				52EE43E12A8B7A510062C0E9 /* TimeTableView.swift */,
 				52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */,
 				52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */,
 				52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */,
@@ -438,6 +457,7 @@
 				52A00D2C2A5C97FC003F9030 /* LufgaSemiBold.ttf in Resources */,
 				52A00D262A5C97FC003F9030 /* LufgaRegular.ttf in Resources */,
 				52A00CFC2A5C9626003F9030 /* Preview Assets.xcassets in Resources */,
+				52152F702A7C28CD009AF302 /* ProductList.plist in Resources */,
 				52A00CF82A5C9626003F9030 /* Assets.xcassets in Resources */,
 				52A00D292A5C97FC003F9030 /* LufgaMedium.ttf in Resources */,
 			);
@@ -469,6 +489,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52152F712A7C28CD009AF302 /* ProductList.plist in Resources */,
 				52A00D612A62DE93003F9030 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,15 +505,19 @@
 				52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
 				52A00D452A5EC853003F9030 /* Stash.xcdatamodeld in Sources */,
 				52A00D3C2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
+				52EE43E52A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */,
 				52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
 				52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */,
 				528E55702A6DB3F20074DCEF /* SplashScreenView.swift in Sources */,
 				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
+				52EE43E22A8B7A510062C0E9 /* TimeTableView.swift in Sources */,
 				52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */,
 				52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */,
+				52EE43E72A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift in Sources */,
 				52A00D342A5C98A0003F9030 /* Constants.swift in Sources */,
 				525243682A6B302A00E670CC /* StoreController.swift in Sources */,
+				52EE43EA2A9A0D390062C0E9 /* HistoricalView.swift in Sources */,
 				525243652A6AE56200E670CC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,6 +555,9 @@
 			files = (
 				520485E62A6A982200D4C5E6 /* DataController.swift in Sources */,
 				52A00D5E2A62DE91003F9030 /* AttendanceWidget.swift in Sources */,
+				52EE43E62A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */,
+				52EE43E82A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift in Sources */,
+				52EE43EB2A9A0D390062C0E9 /* HistoricalView.swift in Sources */,
 				520485E52A6A981F00D4C5E6 /* Stash.xcdatamodeld in Sources */,
 				52A00D5C2A62DE91003F9030 /* AttendanceWidgetBundle.swift in Sources */,
 				528E55752A716DA80074DCEF /* StoreController.swift in Sources */,
@@ -682,7 +710,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"bunk-mate/Preview Content\"";
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -725,7 +753,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"bunk-mate/Preview Content\"";
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				ENABLE_HARDENED_RUNTIME = YES;
