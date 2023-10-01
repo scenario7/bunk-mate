@@ -178,44 +178,45 @@ struct TimeTableView: View {
                             .padding()
                         }
                     }
-                }
-                Spacer()
-                VStack(alignment: .center, spacing:10){
-                    HStack {
-                        Text("Your stats".uppercased())
-                            .foregroundColor(.gray)
-                        .fontWeight(.semibold)
+                    VStack(alignment: .center, spacing:10){
+                        HStack {
+                            Text("Your stats".uppercased())
+                                .foregroundColor(.gray)
+                            .fontWeight(.semibold)
+                        }
+                        HStack{
+                            VStack{
+                                Text("47")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 25, weight: .bold))
+                                Text("Attended")
+                                    .foregroundColor(.white.opacity(0.7))
+                            }
+                            Spacer()
+                            VStack{
+                                Text("23")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 25, weight: .bold))
+                                Text("Missed")
+                                    .foregroundColor(.white.opacity(0.7))
+                            }
+                            Spacer()
+                            VStack{
+                                Text("87%")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 25, weight: .bold))
+                                Text("Overall")
+                                    .foregroundColor(.white.opacity(0.7))
+                            }
+                        }
                     }
-                    HStack{
-                        VStack{
-                            Text("47")
-                                .foregroundColor(.white)
-                                .font(.system(size: 25, weight: .bold))
-                            Text("Attended")
-                                .foregroundColor(.white.opacity(0.7))
-                        }
-                        Spacer()
-                        VStack{
-                            Text("23")
-                                .foregroundColor(.white)
-                                .font(.system(size: 25, weight: .bold))
-                            Text("Missed")
-                                .foregroundColor(.white.opacity(0.7))
-                        }
-                        Spacer()
-                        VStack{
-                            Text("87%")
-                                .foregroundColor(.white)
-                                .font(.system(size: 25, weight: .bold))
-                            Text("Overall")
-                                .foregroundColor(.white.opacity(0.7))
-                        }
-                    }
+                    .padding([.leading, .trailing])
                 }
-                .padding([.leading, .trailing])
+                .ignoresSafeArea()
+
 
             }
-            .padding()
+            .padding([.top,.leading,.trailing])
         }
     }
 }

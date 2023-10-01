@@ -13,6 +13,7 @@ struct PurchaseScreen: View {
     
     @Environment(\.presentationMode) var isPresented
     @StateObject var storeController = StoreController()
+    @State private var isRotating = 0.0
     
     var body: some View {
         ZStack(alignment:.top){
@@ -21,22 +22,60 @@ struct PurchaseScreen: View {
                 Circle()
                     .stroke(lineWidth: 10)
                     .foregroundColor(Color("Accent"))
-                    .offset(x:-200,y:-200)
+                    .offset(x:200,y:-200)
+                    .rotationEffect(.degrees(isRotating))
+                    .onAppear {
+                        withAnimation(.linear(duration: 10)
+                                .repeatForever(autoreverses: false)) {
+                                    isRotating = 360.0
+                        }
+                    }
                 .blur(radius: 20)
                 Circle()
                     .stroke(lineWidth: 10)
                     .foregroundColor(.yellow)
                     .offset(x:200,y:200)
                     .blur(radius: 20)
+                    .rotationEffect(.degrees(isRotating))
+                    .onAppear {
+                        withAnimation(.linear(duration: 10)
+                                .repeatForever(autoreverses: false)) {
+                            isRotating = 360.0
+                        }
+                    }
+                Circle()
+                    .stroke(lineWidth: 10)
+                    .foregroundColor(.red)
+                    .offset(x:-200,y:200)
+                    .blur(radius: 20)
+                    .rotationEffect(.degrees(isRotating))
+                    .onAppear {
+                        withAnimation(.linear(duration: 10)
+                                .repeatForever(autoreverses: false)) {
+                            isRotating = 360.0
+                        }
+                    }
+                Circle()
+                    .stroke(lineWidth: 10)
+                    .foregroundColor(.green)
+                    .offset(x:-200,y:-200)
+                    .blur(radius: 20)
+                    .rotationEffect(.degrees(isRotating))
+                    .onAppear {
+                        withAnimation(.linear(duration: 10)
+                                .repeatForever(autoreverses: false)) {
+                            isRotating = 360.0
+                        }
+                    }
             }
             VStack(spacing:25){
                 VStack {
                     Text("Purchase BunkMate Pro")
                         .foregroundColor(.white)
                         .font(.system(size: 30, weight: .semibold))
-                    Text("Unlock All Access Forever")
+                    Text("One Time Purchase")
                         .foregroundColor(.gray)
-                        .font(.system(size: 20, weight: .semibold))
+                        .font(.system(size: 22, weight: .semibold))
                 }
                 Image(uiImage: UIImage(named: "AppIcon60x60") ?? UIImage())
                     .resizable()

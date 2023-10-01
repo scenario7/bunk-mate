@@ -35,7 +35,7 @@ struct HistoricalView: View {
                         ForEach(actions){ action in
                             HStack {
                                 VStack(alignment:.leading){
-                                    Text("\(action.subjectName ?? "unknown") \(action.attended ? "attended" : "missed") \(action.incremented ? "increased" : "decreased")")
+                                    Text("\(action.subjectName ?? "unknown") \(action.incremented ? "increased" : "decreased") \(action.attended ? "attended" : "missed")")
                                         .foregroundColor(.white)
                                         .font(.system(size: 17, weight: .regular))
                                     Text(Self.dateFormatter.string(from: action.dateSavedAt ?? Date()))

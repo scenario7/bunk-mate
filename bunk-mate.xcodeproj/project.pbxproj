@@ -13,6 +13,8 @@
 		520485EC2A6A9DCF00D4C5E6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D582A62DE91003F9030 /* SwiftUI.framework */; };
 		52152F702A7C28CD009AF302 /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52152F6F2A7C28CD009AF302 /* ProductList.plist */; };
 		52152F712A7C28CD009AF302 /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52152F6F2A7C28CD009AF302 /* ProductList.plist */; };
+		5242E4872AA3354200491023 /* AddLectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2166E2AA32FA200670548 /* AddLectureView.swift */; };
+		5242E4882AA3354300491023 /* AddLectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2166E2AA32FA200670548 /* AddLectureView.swift */; };
 		525243652A6AE56200E670CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243642A6AE56100E670CC /* SceneDelegate.swift */; };
 		525243682A6B302A00E670CC /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525243672A6B302A00E670CC /* StoreController.swift */; };
 		528E55312A6C4ADB0074DCEF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E55302A6C4ADB0074DCEF /* SettingsView.swift */; };
@@ -59,6 +61,7 @@
 		52A00D612A62DE93003F9030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A00D602A62DE93003F9030 /* Assets.xcassets */; };
 		52A00D672A62DE94003F9030 /* AttendanceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 52A00D542A62DE91003F9030 /* AttendanceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */; };
+		52BCE8292AAC7FB900328AA1 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCE8282AAC7FB900328AA1 /* DayView.swift */; };
 		52EE43E22A8B7A510062C0E9 /* TimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E12A8B7A510062C0E9 /* TimeTableView.swift */; };
 		52EE43E52A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E32A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift */; };
 		52EE43E62A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E32A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift */; };
@@ -66,6 +69,8 @@
 		52EE43E82A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E42A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift */; };
 		52EE43EA2A9A0D390062C0E9 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */; };
 		52EE43EB2A9A0D390062C0E9 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */; };
+		52EE43ED2A9A16700062C0E9 /* TimeTableView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43EC2A9A16700062C0E9 /* TimeTableView2.swift */; };
+		52EE43EE2A9A16700062C0E9 /* TimeTableView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43EC2A9A16700062C0E9 /* TimeTableView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,10 +150,13 @@
 		52A00D622A62DE93003F9030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52A0E9BC2A6484C900303DA5 /* AttendanceWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AttendanceWidgetExtension.entitlements; sourceTree = "<group>"; };
 		52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreen.swift; sourceTree = "<group>"; };
+		52BCE8282AAC7FB900328AA1 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		52E2166E2AA32FA200670548 /* AddLectureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLectureView.swift; sourceTree = "<group>"; };
 		52EE43E12A8B7A510062C0E9 /* TimeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableView.swift; sourceTree = "<group>"; };
 		52EE43E32A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HistoricAction+CoreDataClass.swift"; path = "bunk-mate/HistoricAction+CoreDataClass.swift"; sourceTree = "<group>"; };
 		52EE43E42A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HistoricAction+CoreDataProperties.swift"; path = "bunk-mate/HistoricAction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalView.swift; sourceTree = "<group>"; };
+		52EE43EC2A9A16700062C0E9 /* TimeTableView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,7 +291,10 @@
 				52A00D3B2A5D65DA003F9030 /* HomeScreen.swift */,
 				52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */,
 				52EE43E12A8B7A510062C0E9 /* TimeTableView.swift */,
+				52EE43EC2A9A16700062C0E9 /* TimeTableView2.swift */,
+				52BCE8282AAC7FB900328AA1 /* DayView.swift */,
 				52A00D3F2A5D6974003F9030 /* AddSubjectView.swift */,
+				52E2166E2AA32FA200670548 /* AddLectureView.swift */,
 				52A00D4C2A5F2BE6003F9030 /* AllTabsView.swift */,
 				52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */,
 				528E55302A6C4ADB0074DCEF /* SettingsView.swift */,
@@ -503,14 +514,17 @@
 			files = (
 				528E55312A6C4ADB0074DCEF /* SettingsView.swift in Sources */,
 				52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
+				52EE43ED2A9A16700062C0E9 /* TimeTableView2.swift in Sources */,
 				52A00D452A5EC853003F9030 /* Stash.xcdatamodeld in Sources */,
 				52A00D3C2A5D65DA003F9030 /* HomeScreen.swift in Sources */,
 				52EE43E52A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */,
 				52A00D4D2A5F2BE6003F9030 /* AllTabsView.swift in Sources */,
+				52BCE8292AAC7FB900328AA1 /* DayView.swift in Sources */,
 				52A00CF62A5C9624003F9030 /* ContentView.swift in Sources */,
 				528E55702A6DB3F20074DCEF /* SplashScreenView.swift in Sources */,
 				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52EE43E22A8B7A510062C0E9 /* TimeTableView.swift in Sources */,
+				5242E4882AA3354300491023 /* AddLectureView.swift in Sources */,
 				52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */,
 				52A00CF42A5C9624003F9030 /* bunk_mateApp.swift in Sources */,
@@ -554,10 +568,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				520485E62A6A982200D4C5E6 /* DataController.swift in Sources */,
+				5242E4872AA3354200491023 /* AddLectureView.swift in Sources */,
 				52A00D5E2A62DE91003F9030 /* AttendanceWidget.swift in Sources */,
 				52EE43E62A9A0B130062C0E9 /* HistoricAction+CoreDataClass.swift in Sources */,
 				52EE43E82A9A0B130062C0E9 /* HistoricAction+CoreDataProperties.swift in Sources */,
 				52EE43EB2A9A0D390062C0E9 /* HistoricalView.swift in Sources */,
+				52EE43EE2A9A16700062C0E9 /* TimeTableView2.swift in Sources */,
 				520485E52A6A981F00D4C5E6 /* Stash.xcdatamodeld in Sources */,
 				52A00D5C2A62DE91003F9030 /* AttendanceWidgetBundle.swift in Sources */,
 				528E55752A716DA80074DCEF /* StoreController.swift in Sources */,
@@ -710,7 +726,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bunk-mate/Preview Content\"";
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -732,7 +748,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinthomas.bunk-mate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -753,7 +769,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "bunk-mate/bunk_mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bunk-mate/Preview Content\"";
 				DEVELOPMENT_TEAM = R5SRU82TD9;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -775,7 +791,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinthomas.bunk-mate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

@@ -65,67 +65,83 @@ struct HomeScreen: View {
                             
                         }
                         Spacer()
-                        if (!hasPurchased){
+                        VStack{
+                            HStack{
+                                if (!hasPurchased){
+                                    Button {
+                                        showPurchase.toggle()
+                                    } label: {
+                                        ZStack{
+                                            Circle()
+                                                .foregroundColor(constants.primaryColor)
+                                            Image(systemName: "bag")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .foregroundColor(constants.accent)
+                                                .padding(14)
+                                        }
+                                        .frame(height: 50)
+                                    }
+                                    .sheet(isPresented: $showPurchase) {
+                                        PurchaseScreen()
+                                    }
+                                } else {
+                                    Button {
+                                        showSettings.toggle()
+                                    } label: {
+                                        ZStack{
+                                            Circle()
+                                                .foregroundColor(constants.primaryColor)
+                                            Image(systemName: "gearshape")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .foregroundColor(constants.accent)
+                                                .padding(14)
+                                        }
+                                        .frame(height: 50)
+                                    }
+                                    .sheet(isPresented: $showSettings) {
+                                        SettingsView()
+                                    }
+                                }
+                                Button {
+                                    if ((subjects.count >= 2) && (hasPurchased == false)){
+                                        showNotPurchasedAlert.toggle()
+                                    } else {
+                                        addSubjectIsShown.toggle()
+                                    }
+                                } label: {
+                                    ZStack{
+                                        Circle()
+                                            .foregroundColor(constants.primaryColor)
+                                        Image(systemName: "plus")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .foregroundColor(constants.accent)
+                                            .padding(14)
+                                    }
+                                    .frame(height: 50)
+                                }
+                                .sheet(isPresented: $addSubjectIsShown) {
+                                    AddSubjectView()
+                                }
+                                .sheet(isPresented: $historyIsShown) {
+                                    HistoricalView()
+                                }
+                            }
                             Button {
-                                showPurchase.toggle()
+                                historyIsShown.toggle()
                             } label: {
                                 ZStack{
-                                    Circle()
+                                    RoundedRectangle(cornerRadius:7)
                                         .foregroundColor(constants.primaryColor)
-                                    Image(systemName: "bag")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                    Text("History")
                                         .foregroundColor(constants.accent)
-                                        .padding(14)
                                 }
-                                .frame(height: 50)
-                            }
-                            .sheet(isPresented: $showPurchase) {
-                                PurchaseScreen()
-                            }
-                        } else {
-                            Button {
-                                showSettings.toggle()
-                            } label: {
-                                ZStack{
-                                    Circle()
-                                        .foregroundColor(constants.primaryColor)
-                                    Image(systemName: "gearshape")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .foregroundColor(constants.accent)
-                                        .padding(14)
-                                }
-                                .frame(height: 50)
-                            }
-                            .sheet(isPresented: $showSettings) {
-                                SettingsView()
+                                .frame(width:100,height:30)
                             }
                         }
-                        Button {
-                            if ((subjects.count >= 2) && (hasPurchased == false)){
-                                showNotPurchasedAlert.toggle()
-                            } else {
-                                addSubjectIsShown.toggle()
-                            }
-                        } label: {
-                            ZStack{
-                                Circle()
-                                    .foregroundColor(constants.primaryColor)
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(constants.accent)
-                                    .padding(14)
-                            }
-                            .frame(height: 50)
-                        }
-                        .sheet(isPresented: $addSubjectIsShown) {
-                            AddSubjectView()
-                        }
-                        .sheet(isPresented: $historyIsShown) {
-                            HistoricalView()
-                        }
+
                         
                     }
                     .padding(.top)
@@ -303,18 +319,6 @@ struct HomeScreen: View {
                             }
                         }
                     }
-                    .ignoresSafeArea()
-                Button {
-                    historyIsShown.toggle()
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius:10)
-                            .foregroundColor(constants.primaryColor)
-                        Text("View History")
-                            .foregroundColor(constants.accent)
-                    }
-                    .frame(width:150, height:40)
-                }
             }
             .padding(.horizontal)
             .onAppear{

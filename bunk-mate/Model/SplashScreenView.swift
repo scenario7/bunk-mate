@@ -18,7 +18,7 @@ struct SplashScreenView: View {
             
             GeometryReader{ proxy in
                 let size = proxy.size
-                HomeScreen()
+                ContentView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .offset(y: showSplash==1 ? 0 : (size.height+50))
                 if(showSplash==0){
