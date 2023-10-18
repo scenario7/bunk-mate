@@ -78,7 +78,7 @@ struct SmallWidgetView : View {
     
     var body: some View{
         ZStack{
-            Color.black
+            Color("Primary")
             VStack{
                 ZStack{
                     Circle()
@@ -158,7 +158,7 @@ struct LargeWidgetView : View {
     
     var body: some View{
         ZStack{
-            Color.black
+            Color("Primary")
             VStack{
                 HStack{
                     Text(subject1.name!)

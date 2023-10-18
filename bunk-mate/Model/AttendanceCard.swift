@@ -25,22 +25,43 @@ struct AttendanceCard: View {
                         Text(name)
                             .foregroundColor(.white)
                         .font(.system(size: 18, weight: .semibold))
-                        Text("Minimum Requirement : \(Int(requirement*100))%")
-                            .foregroundColor(.gray)
-                        .font(.system(size: 12, weight: .regular))
                         Spacer()
-                        VStack(alignment:.leading) {
-                            Text("Attended : \(Int(attended))")
-                                .foregroundColor(.white)
-                            .font(.system(size: 14, weight: .regular))
-                            Text("Missed : \(Int(missed))")
-                                .foregroundColor(.white)
-                            .font(.system(size: 14, weight: .regular))
+                        VStack(alignment:.leading, spacing: 5) {
+                            HStack(alignment:.center){
+                                Text("\(Int(attended))")
+                                    .foregroundColor(.white.opacity(0.7))
+                                .font(.system(size: 17, weight: .semibold))
+                                Text("Attended")
+                                    .foregroundColor(.gray)
+                                .font(.system(size: 12, weight: .regular))
+
+                            }
+                            HStack(alignment:.center){
+                                Text("\(Int(missed))")
+                                    .foregroundColor(.white.opacity(0.7))
+                                .font(.system(size: 17, weight: .semibold))
+                                Text("Missed")
+                                    .foregroundColor(.gray)
+                                .font(.system(size: 12, weight: .regular))
+
+                            }
+                            HStack(alignment:.center){
+                                Text("\(Int(missed+attended))")
+                                    .foregroundColor(.white.opacity(0.7))
+                                .font(.system(size: 17, weight: .semibold))
+                                Text("Total")
+                                    .foregroundColor(.gray)
+                                .font(.system(size: 12, weight: .regular))
+
+                            }
                         }
                         Spacer()
                         Text(getClassesSkippable(percentage:getPercentage(attended: attended, missed: missed),attended:attended,missed:missed,requirement:requirement))
                             .foregroundColor(.white.opacity(0.7))
                         .font(.system(size: 14, weight: .medium))
+                        Text("Requirement : \(Int(requirement*100))%")
+                            .foregroundColor(.gray)
+                        .font(.system(size: 12, weight: .regular))
                         
                     }
                     Spacer()
@@ -67,6 +88,7 @@ struct AttendanceCard: View {
             }
             .frame(height: 200)
 
+
     }
     
     func getPercentage(attended : Double, missed: Double) -> Double {
@@ -76,13 +98,13 @@ struct AttendanceCard: View {
         if (getPercentage(attended: attended, missed: missed)) > requirement {
             let skippable = Int((attended-requirement*(attended+missed))/requirement)
             if skippable == 0 {
-                return "Cannot skip classes"
+                return "Cannot Skip Classes"
             } else {
-                return "Can skip next \(skippable)"
+                return "Can Skip Next \(skippable)"
             }
         } else if (getPercentage(attended: attended, missed: missed)) < requirement {
             let needToAttend = Int((requirement*(attended+missed)-attended)/(1-requirement))
-            return "Must attend \(needToAttend) Classes"
+            return "Must Attend \(needToAttend) Classes"
         } else {
             return "Cannot Skip Classes"
         }

@@ -25,7 +25,8 @@ struct AddSubjectView: View {
     
     var body: some View {
         ZStack(alignment:.top){
-            Color.black.ignoresSafeArea()
+            LinearGradient(colors: [Color.black, Color("Primary")], startPoint: .bottom, endPoint: .top)
+                .ignoresSafeArea()
             VStack(spacing:30){
                 Text("Subject Name")
                     .font(.system(size: 17, weight: .medium))

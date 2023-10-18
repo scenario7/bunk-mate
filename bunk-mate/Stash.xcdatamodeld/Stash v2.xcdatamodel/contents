@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="HistoricAction" representedClassName="HistoricAction" syncable="YES">
+    <entity name="HistoricAction" representedClassName=".HistoricAction" syncable="YES">
         <attribute name="attended" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dateSavedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="incremented" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="subjectName" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Lecture" representedClassName="Lecture" syncable="YES" codeGenerationType="class">
+    <entity name="Lecture" representedClassName=".Lecture" syncable="YES">
         <attribute name="blueValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="greenValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="redValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="toSubject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="toLectures" inverseEntity="Subject"/>
     </entity>
-    <entity name="Subject" representedClassName="Subject" syncable="YES" codeGenerationType="class">
+    <entity name="Subject" representedClassName=".Subject" syncable="YES">
         <attribute name="attended" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="missed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="Unknown"/>
         <attribute name="requirement" optional="YES" attributeType="Double" defaultValueString="0.75" usesScalarValueType="YES"/>
+        <relationship name="toLectures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lecture" inverseName="toSubject" inverseEntity="Lecture"/>
     </entity>
 </model>

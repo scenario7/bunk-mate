@@ -23,8 +23,8 @@ struct HistoricalView: View {
     var body: some View {
         
         ZStack(alignment:.topLeading){
-            Color.black.ignoresSafeArea()
-                VStack(alignment:.leading){
+            LinearGradient(colors: [Color.black, Color("Primary")], startPoint: .bottom, endPoint: .top)
+                .ignoresSafeArea();                VStack(alignment:.leading){
                     Text("Attendance History")
                         .foregroundColor(.white)
                         .font(.system(size: 27, weight: .semibold))

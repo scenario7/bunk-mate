@@ -15,9 +15,13 @@ struct HomeScreen: View {
     //@Environment(\.managedObjectContext) var moc
     private var dataController = DataController.shared
     @StateObject var storeController = StoreController()
+    
+    @AppStorage("currentDay") var currentDayIndex = 0
         
     
     @FetchRequest(entity: Subject.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Subject.name, ascending: true)]) var subjects : FetchedResults<Subject>
+    
+    @State var showAdvert = false
     
     @State var addSubjectIsShown = false
     @State var historyIsShown = false
@@ -48,7 +52,8 @@ struct HomeScreen: View {
     
     var body: some View {
         ZStack(alignment:.topLeading){
-            Color.black.ignoresSafeArea()
+            LinearGradient(colors: [Color.black, Color("Primary")], startPoint: .bottom, endPoint: .top)
+                .ignoresSafeArea()
             VStack {
                 VStack(alignment:.leading) {
                     HStack {
@@ -149,7 +154,7 @@ struct HomeScreen: View {
                 Rectangle()
                     .frame(height: 8)
                     .foregroundColor(.clear)
-                LinearGradient(colors: [.black,constants.accent,.black], startPoint: .leading, endPoint: .trailing)
+                LinearGradient(colors: [.clear,constants.accent, .clear], startPoint: .leading, endPoint: .trailing)
                     .mask {
                         Rectangle()
                             .frame(height: 3)
@@ -164,6 +169,7 @@ struct HomeScreen: View {
                             ForEach(subjects){ subject in
                                 VStack {
                                     AttendanceCard(name: subject.name ?? "Unknown", attended: subject.attended, missed: subject.missed, requirement: subject.requirement)
+
                                     HStack(alignment:.bottom){
                                         VStack(alignment:.center) {
                                             Text("Attended")
@@ -318,12 +324,49 @@ struct HomeScreen: View {
                                 
                             }
                         }
+                        if(showAdvert){
+                            PurchaseProAd(showSelf: $showAdvert, actionButton: $showPurchase)
+                                .animation(.easeInOut)
+                                .padding(.bottom)
+                        }
                     }
+
             }
             .padding(.horizontal)
             .onAppear{
                 if(storeController.purchasedProducts.isEmpty == false){
                     self.hasPurchased = true
+                    self.showAdvert = false
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                        self.showAdvert = true
+                    })
+                }
+                NotificationController.shared.requestPermission()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "EEEE"
+                switch(dateFormatter.string(from: Date())){
+                case "Monday":
+                    currentDayIndex = 0
+                    break
+                case "Tuesday":
+                    currentDayIndex = 1
+                    break
+                case "Wednesday":
+                    currentDayIndex = 2
+                    break
+                case "Thursday":
+                    currentDayIndex = 3
+                    break
+                case "Friday":
+                    currentDayIndex = 4
+                    break
+                case "Saturday":
+                    currentDayIndex = 5
+                    break
+                default:
+                    currentDayIndex = 6
+                    break
                 }
             }
             .statusBar(hidden: true)
@@ -341,6 +384,13 @@ struct HomeScreen: View {
                 return
             }
             
+            if let lecturesSet = subject.toLectures {
+                let lecturesArray = lecturesSet.allObjects as! [Lecture]
+                for lecture in lecturesArray {
+                    dataController.container.viewContext.delete(lecture)
+                }
+            }
+            
             dataController.container.viewContext.delete(subject)
             dataController.saveData()
             deleteSubject = nil
@@ -349,5 +399,62 @@ struct HomeScreen: View {
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+    }
+}
+
+struct PurchaseProAd : View {
+    
+    @Binding var showSelf : Bool
+    @Binding var actionButton : Bool
+    
+    var body: some View{
+        HStack {
+            ZStack {
+                LinearGradient(colors: [Color("Primary").opacity(0.7), Color("Primary").opacity(0.3)], startPoint: .bottomLeading, endPoint: .topTrailing)
+                HStack {
+                    Image(uiImage: UIImage(named: "AppIcon60x60") ?? UIImage())
+                        .resizable()
+                        .aspectRatio(contentMode: .fit
+                        )
+                        .frame(width: 50)
+                        .cornerRadius(10)
+                    .shadow(radius: 10)
+                    Text("Get BunkMate Pro")
+                        .foregroundColor(.white)
+                        .font(.system(size: 15, weight: .semibold))
+                    Spacer()
+                    Button {
+                        actionButton.toggle()
+                    } label: {
+                        ZStack{
+                            Color("Primary")
+                            Text("BUY")
+                                .foregroundColor(Color("Accent"))
+                                .font(.system(size: 15, weight: .semibold))
+                        }
+                        .frame(width: 60)
+                        .cornerRadius(10)
+                    }
+
+                }
+                .padding()
+            }
+            .frame(height:70)
+        .cornerRadius(20)
+            Button {
+                showSelf.toggle()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(Color("Primary"))
+                    .frame(width: 40,height:40)
+                    Image(systemName: "x.circle")
+                        .foregroundColor(Color("Accent"))
+                }
+            }
+
+        }
+        .animation(.easeInOut)
+
     }
 }
