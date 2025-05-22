@@ -13,6 +13,7 @@
 		520485EC2A6A9DCF00D4C5E6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A00D582A62DE91003F9030 /* SwiftUI.framework */; };
 		52152F702A7C28CD009AF302 /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52152F6F2A7C28CD009AF302 /* ProductList.plist */; };
 		52152F712A7C28CD009AF302 /* ProductList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52152F6F2A7C28CD009AF302 /* ProductList.plist */; };
+		521B91982B0EB5A1003BF634 /* TestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B91972B0EB5A1003BF634 /* TestsView.swift */; };
 		5225D3852AD72F8100470D19 /* HistoricAction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5225D37F2AD72F8100470D19 /* HistoricAction+CoreDataClass.swift */; };
 		5225D3862AD72F8100470D19 /* HistoricAction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5225D37F2AD72F8100470D19 /* HistoricAction+CoreDataClass.swift */; };
 		5225D3872AD72F8100470D19 /* HistoricAction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5225D3802AD72F8100470D19 /* HistoricAction+CoreDataProperties.swift */; };
@@ -29,7 +30,6 @@
 		5236A9032ADC7C5F002CB051 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236A9002ADC79B6002CB051 /* HelpView.swift */; };
 		5236A9042ADC7C60002CB051 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236A9002ADC79B6002CB051 /* HelpView.swift */; };
 		5236A9052ADC7C60002CB051 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236A9002ADC79B6002CB051 /* HelpView.swift */; };
-		5236A9072ADD96E2002CB051 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236A9062ADD96E2002CB051 /* NotificationController.swift */; };
 		5236A9092ADD9A66002CB051 /* bunkmate-notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5236A9082ADD9A65002CB051 /* bunkmate-notification.mp3 */; };
 		5236A90A2ADD9A66002CB051 /* bunkmate-notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5236A9082ADD9A65002CB051 /* bunkmate-notification.mp3 */; };
 		5242E4872AA3354200491023 /* AddLectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2166E2AA32FA200670548 /* AddLectureView.swift */; };
@@ -81,6 +81,8 @@
 		52A00D672A62DE94003F9030 /* AttendanceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 52A00D542A62DE91003F9030 /* AttendanceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */; };
 		52BCE8292AAC7FB900328AA1 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCE8282AAC7FB900328AA1 /* DayView.swift */; };
+		52D7BC622B016E6A00C392CC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236A9062ADD96E2002CB051 /* NotificationController.swift */; };
+		52D7BC632B016E6C00C392CC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236A9062ADD96E2002CB051 /* NotificationController.swift */; };
 		52EE43E22A8B7A510062C0E9 /* TimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E12A8B7A510062C0E9 /* TimeTableView.swift */; };
 		52EE43EA2A9A0D390062C0E9 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */; };
 		52EE43EB2A9A0D390062C0E9 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE43E92A9A0D390062C0E9 /* HistoricalView.swift */; };
@@ -128,6 +130,7 @@
 
 /* Begin PBXFileReference section */
 		52152F6F2A7C28CD009AF302 /* ProductList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ProductList.plist; sourceTree = "<group>"; };
+		521B91972B0EB5A1003BF634 /* TestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsView.swift; sourceTree = "<group>"; };
 		5225D37F2AD72F8100470D19 /* HistoricAction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoricAction+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5225D3802AD72F8100470D19 /* HistoricAction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoricAction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5225D3812AD72F8100470D19 /* Subject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -328,6 +331,7 @@
 				52A0E9BD2A6569D700303DA5 /* PurchaseScreen.swift */,
 				528E55302A6C4ADB0074DCEF /* SettingsView.swift */,
 				528E556F2A6DB3F20074DCEF /* SplashScreenView.swift */,
+				521B91972B0EB5A1003BF634 /* TestsView.swift */,
 			);
 			name = View;
 			path = Model;
@@ -544,6 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521B91982B0EB5A1003BF634 /* TestsView.swift in Sources */,
 				528E55312A6C4ADB0074DCEF /* SettingsView.swift in Sources */,
 				5236A9052ADC7C60002CB051 /* HelpView.swift in Sources */,
 				52A00D382A5D60A7003F9030 /* AttendanceCard.swift in Sources */,
@@ -559,7 +564,7 @@
 				52A00D402A5D6974003F9030 /* AddSubjectView.swift in Sources */,
 				52EE43E22A8B7A510062C0E9 /* TimeTableView.swift in Sources */,
 				5242E4882AA3354300491023 /* AddLectureView.swift in Sources */,
-				5236A9072ADD96E2002CB051 /* NotificationController.swift in Sources */,
+				52D7BC632B016E6C00C392CC /* NotificationController.swift in Sources */,
 				52A00D492A5F2AA6003F9030 /* DataController.swift in Sources */,
 				52A0E9BE2A6569D700303DA5 /* PurchaseScreen.swift in Sources */,
 				5225D3892AD72F8100470D19 /* Subject+CoreDataClass.swift in Sources */,
@@ -609,6 +614,7 @@
 			files = (
 				5225D3902AD72F8100470D19 /* Lecture+CoreDataProperties.swift in Sources */,
 				5225D38C2AD72F8100470D19 /* Subject+CoreDataProperties.swift in Sources */,
+				52D7BC622B016E6A00C392CC /* NotificationController.swift in Sources */,
 				520485E62A6A982200D4C5E6 /* DataController.swift in Sources */,
 				5242E4872AA3354200491023 /* AddLectureView.swift in Sources */,
 				52A00D5E2A62DE91003F9030 /* AttendanceWidget.swift in Sources */,
@@ -793,7 +799,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinthomas.bunk-mate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -836,7 +842,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinthomas.bunk-mate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

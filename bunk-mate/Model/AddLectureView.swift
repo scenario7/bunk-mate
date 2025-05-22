@@ -73,7 +73,7 @@ struct AddLectureView: View {
                             .font(.system(size: 20, weight: .regular))
                         Spacer()
                         ColorPicker(selection: $selectedColor) {
-                            Text("Choose")
+                            Text("")
                         }
 
                     }

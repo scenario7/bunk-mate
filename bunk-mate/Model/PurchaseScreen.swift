@@ -15,6 +15,7 @@ struct PurchaseScreen: View {
     @StateObject var storeController = StoreController()
     @State private var isRotating = 0.0
     
+    
     var body: some View {
         ZStack(alignment:.top){
             Color.black.ignoresSafeArea()
@@ -143,6 +144,7 @@ struct PurchaseScreen: View {
                     Button {
                         Task{
                             try? await storeController.purchase(product)
+                            isPresented.wrappedValue.dismiss()
                         }
                     } label: {
                         ZStack{

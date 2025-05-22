@@ -32,6 +32,8 @@ struct HomeScreen: View {
     
     @State var hasPurchased = false
     
+    let pub = NotificationCenter.default.publisher(for: Notification.Name("PurchasedNotification"))
+    
     @State private var showNotPurchasedAlert = false
     
     let columns = [
@@ -324,11 +326,6 @@ struct HomeScreen: View {
                                 
                             }
                         }
-                        if(showAdvert){
-                            PurchaseProAd(showSelf: $showAdvert, actionButton: $showPurchase)
-                                .animation(.easeInOut)
-                                .padding(.bottom)
-                        }
                     }
 
             }
@@ -336,11 +333,6 @@ struct HomeScreen: View {
             .onAppear{
                 if(storeController.purchasedProducts.isEmpty == false){
                     self.hasPurchased = true
-                    self.showAdvert = false
-                } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-                        self.showAdvert = true
-                    })
                 }
                 NotificationController.shared.requestPermission()
                 let dateFormatter = DateFormatter()
@@ -375,6 +367,12 @@ struct HomeScreen: View {
                     self.hasPurchased = true
                 }
             }
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name.purchasedNotification)) { (output) in
+                if(storeController.purchasedProducts.isEmpty == false){
+                    print("Notification Received")
+                    self.hasPurchased = true
+                }
+            }
 
         }
     }
@@ -395,66 +393,10 @@ struct HomeScreen: View {
             dataController.saveData()
             deleteSubject = nil
         }
+    
 }
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
-    }
-}
-
-struct PurchaseProAd : View {
-    
-    @Binding var showSelf : Bool
-    @Binding var actionButton : Bool
-    
-    var body: some View{
-        HStack {
-            ZStack {
-                LinearGradient(colors: [Color("Primary").opacity(0.7), Color("Primary").opacity(0.3)], startPoint: .bottomLeading, endPoint: .topTrailing)
-                HStack {
-                    Image(uiImage: UIImage(named: "AppIcon60x60") ?? UIImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit
-                        )
-                        .frame(width: 50)
-                        .cornerRadius(10)
-                    .shadow(radius: 10)
-                    Text("Get BunkMate Pro")
-                        .foregroundColor(.white)
-                        .font(.system(size: 15, weight: .semibold))
-                    Spacer()
-                    Button {
-                        actionButton.toggle()
-                    } label: {
-                        ZStack{
-                            Color("Primary")
-                            Text("BUY")
-                                .foregroundColor(Color("Accent"))
-                                .font(.system(size: 15, weight: .semibold))
-                        }
-                        .frame(width: 60)
-                        .cornerRadius(10)
-                    }
-
-                }
-                .padding()
-            }
-            .frame(height:70)
-        .cornerRadius(20)
-            Button {
-                showSelf.toggle()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(Color("Primary"))
-                    .frame(width: 40,height:40)
-                    Image(systemName: "x.circle")
-                        .foregroundColor(Color("Accent"))
-                }
-            }
-
-        }
-        .animation(.easeInOut)
-
     }
 }

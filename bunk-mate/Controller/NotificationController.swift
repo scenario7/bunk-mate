@@ -11,7 +11,7 @@ import UserNotifications
 
 class NotificationController {
     
-    @AppStorage("allowNotifications") var allowNotifications : Bool = false
+    @FetchRequest(entity: Lecture.entity(), sortDescriptors: []) var lectures : FetchedResults<Lecture>
     static let shared = NotificationController()
     
     func requestPermission(){
@@ -25,7 +25,7 @@ class NotificationController {
         }
     }
     
-    func scheduleNotification(hour:Int, minute:Int){
+    func scheduleNotification(){
         
         let sound : UNNotificationSound = UNNotificationSound.defaultCritical
         
@@ -33,24 +33,33 @@ class NotificationController {
             let sound = UNNotificationSound(named: UNNotificationSoundName(soundURL.absoluteString))
         }
         
-        let content = UNMutableNotificationContent()
-        content.title = "Attendance Reminder"
-        content.body = "Remember to mark your attendance for the day"
-        content.sound = sound
-        content.badge = 1
+        for lecture in lectures {
+            
+            let calendar = Calendar.current
+            let currentDate = Date()
+            let notificationTime = lecture.startTime!.addingTimeInterval(-30 * 60)
+            let components = calendar.dateComponents([.hour, .minute], from: notificationTime)
+            
+            let content = UNMutableNotificationContent()
+            content.title = "\(lecture.toSubject!.name!) class at \(components.hour):\(components.minute)"
+            content.body = "Lecture begins in 30 minutes"
+            content.sound = sound
+            
+            var dateComponents = DateComponents()
+            dateComponents.hour = components.hour
+            dateComponents.minute = components.minute
+            dateComponents.day = (Int(lecture.day) + 6) % 7
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            
+            UNUserNotificationCenter.current().add(request)
+        }
         
-        var dateComponents = DateComponents()
-        dateComponents.hour = hour
-        dateComponents.minute = minute
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        
-        UNUserNotificationCenter.current().add(request)
     }
     
 }

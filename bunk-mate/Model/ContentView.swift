@@ -33,6 +33,13 @@ struct ContentView: View {
                         Text("Timetable")
                     }
                 }
+            TestView()
+                .tabItem {
+                    VStack{
+                        Image(systemName: "list.clipboard")
+                        Text("Tests")
+                    }
+                }
         }
         .accentColor(Color("Accent"))
     }

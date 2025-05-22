@@ -16,9 +16,9 @@ struct HelpView: View {
             LinearGradient(colors: [Color.black, Color("Primary")], startPoint: .bottom, endPoint: .top)
                 .ignoresSafeArea()
             VStack(alignment:.leading){
-                Text("Help")                            .foregroundColor(.white)
+                Text("What's New?")                            .foregroundColor(.white)
                     .font(.system(size: 27, weight: .semibold))
-                Text("Having trouble using the app? Look no further.")                            .foregroundColor(.gray)
+                Text("Here's a few tips on how to use BunkMate")                            .foregroundColor(.gray)
                     .font(.system(size: 16, weight: .regular))
                 Rectangle()
                     .frame(height: 50)

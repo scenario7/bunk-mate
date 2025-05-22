@@ -90,7 +90,7 @@ struct SmallWidgetView : View {
                         .foregroundColor(returnColor(percentage: getPercentage(attended: subject1.attended, missed: subject1.missed), requirement: subject1.requirement))
                         .shadow(color: returnColor(percentage: getPercentage(attended: subject1.attended, missed: subject1.missed), requirement: subject1.requirement), radius: 3)
                         .rotationEffect(Angle(degrees: 270))
-
+                    
                     Text("\(Int((getPercentage(attended: subject1.attended,    missed: subject1.missed)*100)))%")
                         .foregroundColor(.white)
                         .font(.system(size: 17, weight: .medium))
@@ -102,10 +102,11 @@ struct SmallWidgetView : View {
                     .multilineTextAlignment(.center)
                 Text(getClassesSkippable(percentage:getPercentage(attended: subject1.attended, missed: subject1.missed),attended:subject1.attended,missed:subject1.missed,requirement:subject1.requirement))
                     .foregroundColor(.white.opacity(0.7))
-                .font(.system(size: 10, weight: .medium))
+                    .font(.system(size: 10, weight: .medium))
             }
             .foregroundColor(.white)
             .padding()
+
         }
     }
 
@@ -178,6 +179,7 @@ struct LargeWidgetView : View {
                     }
                     
                 }
+                
                 HStack{
                     Text(subject2.name!)
                         .font(.system(size: 13, weight: .semibold))
@@ -196,6 +198,7 @@ struct LargeWidgetView : View {
                     }
                     
                 }
+
                 HStack{
                     Text(subject3.name!)
                         .font(.system(size: 13, weight: .semibold))
@@ -214,6 +217,7 @@ struct LargeWidgetView : View {
                     }
                     
                 }
+
                 HStack{
                     Text(subject4.name!)
                         .font(.system(size: 13, weight: .semibold))
@@ -235,6 +239,7 @@ struct LargeWidgetView : View {
             }
             .padding()
         }
+
     }
     
     func getPercentage(attended : Double, missed: Double) -> Double {
@@ -365,6 +370,7 @@ struct AttendanceWidget: Widget {
         .configurationDisplayName("Attendance Widget")
         .description("This widget shows your attendance statistics")
         .supportedFamilies(supportedFamilies)
+        .contentMarginsDisabled()
     }
     
 }
@@ -413,5 +419,22 @@ struct AttendanceWidget_Previews: PreviewProvider {
     static var previews: some View {
         AttendanceWidgetEntryView(entry: SimpleEntry(date: Date(), subjects: []))
             .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+    }
+}
+
+extension WidgetConfiguration
+{
+    func contentMarginsDisabledIfAvailable() -> some WidgetConfiguration
+    {
+        #if compiler(>=5.9) // Xcode 15
+            if #available(iOSApplicationExtension 17.0, *) {
+                return self.contentMarginsDisabled()
+            }
+            else {
+                return self
+            }
+        #else
+            return self
+        #endif
     }
 }

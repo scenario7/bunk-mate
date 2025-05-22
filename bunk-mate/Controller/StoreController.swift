@@ -12,11 +12,17 @@ public enum StoreError: Error {
     case failedVerification
 }
 
+extension Notification.Name {
+    static let purchasedNotification = Notification.Name("TaskAddedNotification")
+}
+
 class StoreController: ObservableObject {
     @Published var storeProducts: [Product] = []
     @Published var purchasedProducts : [Product] = []
     
     var updateListenerTask: Task<Void, Error>? = nil
+    
+
     
     private let productDict: [String : String]
     init() {
@@ -133,6 +139,10 @@ class StoreController: ObservableObject {
             
             //always finish a transaction - performance
             await transaction.finish()
+            
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: Notification.Name.purchasedNotification, object: nil)
+            }
             
             return transaction
         case .userCancelled, .pending:

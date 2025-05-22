@@ -11,19 +11,13 @@ struct SettingsView: View {
     
     @AppStorage("proAppIcon") var showProAppIcon = false
     @State private var isCircleVisible = true
-    @AppStorage("allowNotifications") var allowNotifications = true
-    @State var reminderTime = Date()
+    @AppStorage("allowNotifications") var allowNotifications = false
     @AppStorage("reminderTime") var reminderTimeShadow: Double = 0
     
+    @FetchRequest(entity: Subject.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Subject.name, ascending: true)]) var subjects: FetchedResults<Subject>
     
-    
-    
-    
-    @FetchRequest(entity: Subject.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Subject.name, ascending: true)]) var subjects : FetchedResults<Subject>
-    
-    
-    init(){
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor.white]
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     let funnySentences: [String] = [
@@ -44,75 +38,68 @@ struct SettingsView: View {
         NavigationView {
             ZStack {
                 LinearGradient(colors: [Color.black, Color("Primary")], startPoint: .bottom, endPoint: .top)
-                    .ignoresSafeArea();                VStack(spacing:20){
-                        HStack{
-                            Text("Use Pro App Icon")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(.white)
-                            Spacer()
-                            Toggle("", isOn: $showProAppIcon)
-                        }
-                        HStack{
-                            Text("Daily Reminder At")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(.white)
-                            Spacer()
-                            DatePicker("", selection: Binding(
-                                get: {reminderTime}, set: {
-                                    reminderTimeShadow = $0.timeIntervalSince1970
-                                    reminderTime = $0
-                                    let components = Calendar.current.dateComponents([.hour, .minute], from: reminderTime)
-                                    NotificationController.shared.scheduleNotification(hour: components.hour ?? 0, minute: components.minute ?? 0)
-                                }), displayedComponents: .hourAndMinute)
-                            .onAppear {
-                                reminderTime = Date(timeIntervalSince1970: reminderTimeShadow)
-                            }
-                            .preferredColorScheme(.dark)
-                        }
-
+                    .ignoresSafeArea()
+                VStack(spacing: 20) {
+                    HStack {
+                        Text("Use Pro App Icon")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.white)
                         Spacer()
-                        //                    Text("Thank you for being a BunkMate Pro user.")
-                        //                        .font(.system(size: 17, weight: .semibold))
-                        //                        .foregroundColor(.white.opacity(0.6))
-                        //                        .multilineTextAlignment(.center)
-                        HStack{
-                            VStack{
-                                Text("Attended")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15, weight: .semibold))
-                                Text("\(returnAttended())")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 45, weight: .semibold))
-                            }
-                            Spacer()
-                            VStack{
-                                Text("Missed")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15, weight: .semibold))
-                                Text("\(returnMissed())")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 45, weight: .semibold))
-                            }
-                            Spacer()
-                            VStack{
-                                Text("Overall %")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15, weight: .semibold))
-                                Text(String(format: "%.0f%%", returnOVR()))                                .foregroundColor(Color("Accent"))
-                                    .font(.system(size: 45, weight: .semibold))
-                            }
+                        Toggle("", isOn: $showProAppIcon)
+                    }
+                    HStack {
+                        Text("Daily Reminder")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.white)
+                        Spacer()
+                        Toggle("", isOn: $allowNotifications)
+                            .onChange(of: allowNotifications, perform: { newValue in
+                                if newValue {
+                                    NotificationController.shared.scheduleNotification()
+                                }
+                            })
+                        .toggleStyle(SwitchToggleStyle(tint: Color("Accent")))
+                    }
+                    Spacer()
+                    HStack {
+                        VStack {
+                            Text("Attended")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15, weight: .semibold))
+                            Text("\(returnAttended())")
+                                .foregroundColor(.white)
+                                .font(.system(size: 45, weight: .semibold))
                         }
-                        .padding()
-                        Text(funnySentences[Int.random(in: 0...10)])
-                            .font(.system(size: 17, weight: .semibold))
-                            .foregroundColor(.white.opacity(0.6))
-                            .multilineTextAlignment(.center)
+                        Spacer()
+                        VStack {
+                            Text("Missed")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15, weight: .semibold))
+                            Text("\(returnMissed())")
+                                .foregroundColor(.white)
+                                .font(.system(size: 45, weight: .semibold))
+                        }
+                        Spacer()
+                        VStack {
+                            Text("Overall %")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15, weight: .semibold))
+                            Text(String(format: "%.0f%%", returnOVR()))
+                                .foregroundColor(Color("Accent"))
+                                .font(.system(size: 45, weight: .semibold))
+                        }
                     }
                     .padding()
-                    .navigationTitle("Settings")
+                    Text(funnySentences[Int.random(in: 0...10)])
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(.white.opacity(0.6))
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+                .navigationTitle("Settings")
             }
             .onChange(of: showProAppIcon) { _ in
-                if (showProAppIcon == false) {
+                if !showProAppIcon {
                     UIApplication.shared.setAlternateIconName(nil)
                 } else {
                     UIApplication.shared.setAlternateIconName("ProAppIcon")
@@ -122,35 +109,18 @@ struct SettingsView: View {
     }
     
     private func returnAttended() -> Int {
-        var attended = 0
-        for subject in subjects {
-            attended += Int(subject.attended)
-        }
-        return attended
+        subjects.reduce(0) { $0 + Int($1.attended) }
     }
     
     private func returnMissed() -> Int {
-        var missed = 0
-        for subject in subjects {
-            missed += Int(subject.missed)
-        }
-        return missed
+        subjects.reduce(0) { $0 + Int($1.missed) }
     }
+    
     private func returnOVR() -> Double {
-        var attended = Double(returnAttended())
-        var missed = Double(returnMissed())
-        var total = attended + missed
-        return (attended/total)*100.0
-    }
-    
-    
-    private func startBlinking() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-            withAnimation {
-                isCircleVisible.toggle()
-            }
-        }
-        timer.fire()
+        let attended = Double(returnAttended())
+        let missed = Double(returnMissed())
+        let total = attended + missed
+        return (attended / total) * 100.0
     }
 }
 
@@ -159,5 +129,3 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
-
-

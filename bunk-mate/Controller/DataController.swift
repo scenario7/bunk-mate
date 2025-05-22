@@ -84,6 +84,7 @@ class DataController {
                 UserDefaults.standard.set(Date(), forKey: "lua")
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 WidgetCenter.shared.reloadAllTimelines()
+                NotificationController.shared.scheduleNotification()
             } catch {
                 
             }
